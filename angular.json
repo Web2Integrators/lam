@@ -1,7 +1,141 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "expresswaferflow": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/expresswaferflow",
+      "sourceRoot": "apps/expresswaferflow/src",
+      "prefix": "lamresearch",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/expresswaferflow",
+            "index": "apps/expresswaferflow/src/index.html",
+            "main": "apps/expresswaferflow/src/main.ts",
+            "polyfills": "apps/expresswaferflow/src/polyfills.ts",
+            "tsConfig": "apps/expresswaferflow/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/expresswaferflow/src/favicon.ico",
+              "apps/expresswaferflow/src/assets"
+            ],
+            "styles": ["apps/expresswaferflow/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/expresswaferflow/src/environments/environment.ts",
+                  "with": "apps/expresswaferflow/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "expresswaferflow:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "expresswaferflow:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "expresswaferflow:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/expresswaferflow/tsconfig.app.json",
+              "apps/expresswaferflow/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/expresswaferflow/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/expresswaferflow/jest.config.js",
+            "tsConfig": "apps/expresswaferflow/tsconfig.spec.json",
+            "setupFile": "apps/expresswaferflow/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "expresswaferflow-e2e": {
+      "root": "apps/expresswaferflow-e2e",
+      "sourceRoot": "apps/expresswaferflow-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/expresswaferflow-e2e/cypress.json",
+            "tsConfig": "apps/expresswaferflow-e2e/tsconfig.e2e.json",
+            "devServerTarget": "expresswaferflow:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "expresswaferflow:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/expresswaferflow-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/expresswaferflow-e2e/**"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "expresswaferflow"
 }
