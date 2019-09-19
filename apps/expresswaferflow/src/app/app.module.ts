@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+
+import { SharedModule, routes } from '@lamresearch/shared';
+import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' })
+    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

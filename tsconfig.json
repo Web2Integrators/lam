@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@lamresearch/shared": ["libs/shared/src/index.ts"]
+      "@lamresearch/shared": ["libs/shared/src/index.ts"],
+      "@lamresearch/landing": ["libs/landing/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

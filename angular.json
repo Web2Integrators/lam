@@ -157,6 +157,40 @@
         }
       },
       "schematics": {}
+    },
+    "landing": {
+      "projectType": "library",
+      "root": "libs/landing",
+      "sourceRoot": "libs/landing/src",
+      "prefix": "landing",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/landing/tsconfig.lib.json",
+            "project": "libs/landing/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/landing/tsconfig.lib.json",
+              "libs/landing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/landing/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/landing/jest.config.js",
+            "tsConfig": "libs/landing/tsconfig.spec.json",
+            "setupFile": "libs/landing/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {
