@@ -7,8 +7,15 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@lamreseach/landing').then(
+      import('@lamresearch/landing').then(
         m => m.LandingModule
+      )
+  },
+  {
+    path: 'session',
+    loadChildren: () =>
+      import("@lamresearch/session-manager").then(
+        m => m.SessionManagerModule
       )
   },
   // {

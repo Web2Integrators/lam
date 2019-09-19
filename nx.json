@@ -19,6 +19,9 @@
     },
     "landing": {
       "tags": []
+    },
+    "session-manager": {
+      "tags": []
     }
   }
 }

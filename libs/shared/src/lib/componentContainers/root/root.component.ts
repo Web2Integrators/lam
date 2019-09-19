@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lamresearch-root',
+  selector: 'shared-root',
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.css']
 })

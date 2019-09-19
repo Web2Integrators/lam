@@ -25,7 +25,10 @@
               "apps/expresswaferflow/src/favicon.ico",
               "apps/expresswaferflow/src/assets"
             ],
-            "styles": ["apps/expresswaferflow/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/expresswaferflow/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -191,6 +194,44 @@
         }
       },
       "schematics": {}
+    },
+    "session-manager": {
+      "projectType": "library",
+      "root": "libs/session-manager",
+      "sourceRoot": "libs/session-manager/src",
+      "prefix": "session",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/session-manager/tsconfig.lib.json",
+            "project": "libs/session-manager/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/session-manager/tsconfig.lib.json",
+              "libs/session-manager/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/session-manager/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/session-manager/jest.config.js",
+            "tsConfig": "libs/session-manager/tsconfig.spec.json",
+            "setupFile": "libs/session-manager/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
