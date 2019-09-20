@@ -232,6 +232,44 @@
           "styleext": "scss"
         }
       }
+    },
+    "lam-common": {
+      "projectType": "library",
+      "root": "libs/lam-common",
+      "sourceRoot": "libs/lam-common/src",
+      "prefix": "lamcommon",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/lam-common/tsconfig.lib.json",
+            "project": "libs/lam-common/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/lam-common/tsconfig.lib.json",
+              "libs/lam-common/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/lam-common/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/lam-common/jest.config.js",
+            "tsConfig": "libs/lam-common/tsconfig.spec.json",
+            "setupFile": "libs/lam-common/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

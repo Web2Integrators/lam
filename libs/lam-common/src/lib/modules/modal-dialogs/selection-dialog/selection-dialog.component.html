@@ -1,0 +1,13 @@
+<header mat-dialog-title>{{title}}</header>
+
+<mat-dialog-content>
+  <lam-select [options]="options" [selection]="selection"></lam-select>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-stroked-button
+    [disabled]="selection.invalid"
+    [mat-dialog-close]="selection.value"
+  >OK</button>
+</mat-dialog-actions>

@@ -1,0 +1,21 @@
+
+// (Re)import Font Awesome for access to the fa-var-* character variables.
+//
+// XXX: Can probably simplify this by specifying includePaths in the
+// Angular CLI stylePreprocessorOptions section, and then creating a
+// `_variables.scss` or the equivalent that can be included in component
+// .scss files.
+//
+$fa-font-path : '../../../../../node_modules/font-awesome/fonts';
+@import '../../../../../node_modules/font-awesome/scss/font-awesome';
+
+.expanded-icon, .collapsed-icon {
+  font-family: FontAwesome;
+  position: relative;
+  display: inline-block;
+  width: 0.5em;
+}
+
+.expanded-icon:before   { content: $fa-var-caret-down; }
+.collapsed-icon:before  { content: $fa-var-caret-right; }
+

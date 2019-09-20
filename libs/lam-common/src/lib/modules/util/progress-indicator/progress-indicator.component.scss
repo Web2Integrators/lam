@@ -1,0 +1,50 @@
+$offset: 187;
+$duration: 1.4s;
+$halfSpinnerSize: 33px;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+  position: absolute;
+  z-index: 999;
+  margin: auto;
+  left: calc(50% - #{$halfSpinnerSize});
+  top: calc(50% - #{$halfSpinnerSize});
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  stroke: #00548b; // XXX: Lam Corporate Blue -- allow customization
+  transform-origin: center;
+  animation: dash $duration ease-in-out infinite;
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+
+div.disable-layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  z-index: 900;
+  background-color: lightgray;
+}

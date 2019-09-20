@@ -1,0 +1,8 @@
+<header mat-dialog-title>{{title}}</header>
+
+<mat-dialog-content>{{message}}</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button e2e="detailsDialogDoNot" mat-dialog-close>{{dismissiveLabel}}</button>
+  <button mat-stroked-button e2e="detailsDialogDo" [mat-dialog-close]="true">{{confirmingLabel}}</button>
+</mat-dialog-actions>
