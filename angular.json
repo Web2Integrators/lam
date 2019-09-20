@@ -270,6 +270,82 @@
           "styleext": "scss"
         }
       }
+    },
+    "lam-common-lazy": {
+      "projectType": "library",
+      "root": "libs/lam-common-lazy",
+      "sourceRoot": "libs/lam-common-lazy/src",
+      "prefix": "lam-common-lazy",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/lam-common-lazy/tsconfig.lib.json",
+            "project": "libs/lam-common-lazy/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/lam-common-lazy/tsconfig.lib.json",
+              "libs/lam-common-lazy/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/lam-common-lazy/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/lam-common-lazy/jest.config.js",
+            "tsConfig": "libs/lam-common-lazy/tsconfig.spec.json",
+            "setupFile": "libs/lam-common-lazy/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "lam-common-eager": {
+      "projectType": "library",
+      "root": "libs/lam-common-eager",
+      "sourceRoot": "libs/lam-common-eager/src",
+      "prefix": "lam-common-eager",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/lam-common-eager/tsconfig.lib.json",
+            "project": "libs/lam-common-eager/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/lam-common-eager/tsconfig.lib.json",
+              "libs/lam-common-eager/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/lam-common-eager/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/lam-common-eager/jest.config.js",
+            "tsConfig": "libs/lam-common-eager/tsconfig.spec.json",
+            "setupFile": "libs/lam-common-eager/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

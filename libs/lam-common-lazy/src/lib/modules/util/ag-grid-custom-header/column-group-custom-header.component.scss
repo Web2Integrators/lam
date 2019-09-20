@@ -1,0 +1,13 @@
+.buttons {
+  float: right;
+
+  .customHeaderMenuButton {
+    margin-left: 5px;
+  }
+}
+
+.custom-header-label {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

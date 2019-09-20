@@ -25,6 +25,12 @@
     },
     "lam-common": {
       "tags": []
+    },
+    "lam-common-lazy": {
+      "tags": []
+    },
+    "lam-common-eager": {
+      "tags": []
     }
   }
 }

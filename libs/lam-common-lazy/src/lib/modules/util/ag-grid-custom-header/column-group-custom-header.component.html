@@ -1,0 +1,26 @@
+<div class="buttons">
+  <span
+    class="ag-header-icon ag-header-expand-icon"
+    [class.ag-header-expand-icon-expanded]="!isExpanded"
+    [class.ag-header-expand-icon-collapsed]="isExpanded"
+    (click)="toggleExpanded()"
+  >
+    <span
+      class="ag-icon"
+      [class.ag-icon-expanded]="!isExpanded"
+      [class.ag-icon-contracted]="isExpanded"
+    ></span>
+  </span>
+  <span
+    *ngIf="!params?.hideHeaderMenu"
+    class="customHeaderMenuButton"
+    #customHeaderMenuButton
+    (click)="onMenuClick()"
+  >
+    <i class="fa fa-caret-square-o-down"></i>
+  </span>
+</div>
+
+<div (click)="clickColumn($event)" class="grid-header-click-area">
+  <div class="custom-header-label">{{ params?.displayName }}</div>
+</div>

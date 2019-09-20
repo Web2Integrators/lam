@@ -19,7 +19,9 @@
       "@lamresearch/shared": ["libs/shared/src/index.ts"],
       "@lamresearch/landing": ["libs/landing/src/index.ts"],
       "@lamresearch/session-manager": ["libs/session-manager/src/index.ts"],
-      "@lamresearch/lam-common": ["libs/lam-common/src/index.ts"]
+      "@lamresearch/lam-common": ["libs/lam-common/src/index.ts"],
+      "@lamresearch/lam-common-lazy": ["libs/lam-common-lazy/src/index.ts"],
+      "@lamresearch/lam-common-eager": ["libs/lam-common-eager/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
