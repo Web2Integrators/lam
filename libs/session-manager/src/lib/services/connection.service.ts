@@ -3,59 +3,18 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { cloneDeep, isUndefined } from 'lodash';
-import {
-  BehaviorSubject,
-  Observable,
-  Subscription,
-  UnaryFunction,
-  empty,
-  interval,
-  of,
-  pipe,
-  combineLatest,
-  Subject,
-  from,
-} from 'rxjs';
-import {
-  catchError,
-  distinctUntilChanged,
-  filter,
-  map,
-  mapTo,
-  mergeMap,
-  switchMap,
-  take,
-  takeUntil,
-  tap,
-  timeout,
-  withLatestFrom,
-  endWith,
-  startWith,
-  shareReplay,
-} from 'rxjs/operators';
+import {  BehaviorSubject,  Observable,  Subscription,  UnaryFunction,  empty,  interval,  of,  pipe,  combineLatest,  Subject,  from,} from 'rxjs';
+import {  catchError,  distinctUntilChanged,  filter,  map,  mapTo,  mergeMap,  switchMap,  take,  takeUntil,  tap,  timeout,  withLatestFrom,  endWith,  startWith,  shareReplay,} from 'rxjs/operators';
 
-import { HttpProgressService } from './../http-progress.service';
-import { ModalService } from '../common/modal-dialogs/modal.service';
-import { extractErrorName, handleBackendError } from '../common/util/connection-utils';
-import { LogService, Logger } from '../log/log.service';
-import { BackendError } from '../pde/pde-types';
-import { PdeState, resetClientSession } from '../pde/state/pde-state';
-import { BackendVersionService } from '../backend-version/backend-version.service';
-import { filterResources } from './resource-utils';
-import {
-  HeartbeatResponse,
-  LoginCredentials,
-  MachineResource,
-  Resource,
-  Session,
-  BackendConfigOptions,
-  MachineConfiguration,
-  HostImage,
-  PMImage,
-  ConfigurationResponse,
-} from './types';
-import { truthy } from '../common/util/rx-utils';
-import { ElectronService } from '../electron.service';
+
+
+import { MachineResource, Session, BackendConfigOptions, MachineConfiguration, HostImage, PMImage, Resource, LoginCredentials, ConfigurationResponse, HeartbeatResponse } from '../types/types';
+import { BackendVersionService,ModalService, BackendError, handleBackendError, extractErrorName, ConnectionErrorCode, truthy, UiMode, ElectronService, Environment } from '@lamresearch/lam-common-lazy';
+// todo tslint:disable-next-line:nx-enforce-module-boundaries
+// tslint:disable-next-line: nx-enforce-module-boundaries
+import { Logger, LogService,  HttpProgressService } from '@lamresearch/lam-common-eager';
+import { filterResources } from '../utils/resource-utils';
+
 
 export enum WizardStep {
   Session,
@@ -69,13 +28,7 @@ export enum ResetConnectionMode {
   FatalError,
 }
 
-export enum ConnectionErrorCode {
-  sessionIDNotFound = 'SessionIDNotFound',
-  ctuWorkersUnavailable = 'CTUWorkersUnavailable',
-  userLoginFailed = 'UserLoginFailed',
-  invalidBackendVersion = 'InvalidBackendVersion',
-  unknown = 'Unknown',
-}
+
 
 const arbitrationTimeout = 60 * 1000;
 const backendPort = '18072';
@@ -120,16 +73,15 @@ export const isProcessModule = (resourceName?: string): boolean => {
  *  - String(imageOptions.PM#Image.HydraControllerMode) is "Enable" (case-insensitive).
  * @param config The machine configuration object.
  */
-export function extractBackendConfig(
-  config: MachineConfiguration | InvalidState,
-  resourceName: string,
-): BackendConfigOptions | InvalidState {
-  if (!config || config === 'PENDING') {
-    return config;
-  }
+//todo : | InvalidState removed
+export function extractBackendConfig(config: MachineConfiguration, resourceName: string): BackendConfigOptions | InvalidState {
+  //todo
+  // if (!config || config === 'PENDING') {
+  //   return config;
+  // }
   const hostImage = config.imageOptions.HostImage as HostImage;
-  let endpointEditorEnabled: boolean = false;
-  let hydraEditorEnabled: boolean = false;
+  let endpointEditorEnabled = false;
+  let hydraEditorEnabled = false;
   if (isProcessModule(resourceName)) {
     const pmOpts = config.imageOptions[`${resourceName}Image`] as PMImage;
     if (!pmOpts) {
@@ -158,11 +110,13 @@ export class ConnectionService implements OnDestroy {
   private readonly log: Logger;
   private _wizardStep = new BehaviorSubject<WizardStep>(WizardStep.Session);
   wizardStep: Observable<WizardStep> = this._wizardStep.asObservable();
+  //todo:good place to store types
   resourceList = new BehaviorSubject<MachineResource[]>([]);
   sessionError = new BehaviorSubject<boolean>(false);
   loginError = new BehaviorSubject<boolean>(false);
   heartbeat?: Subscription;
   ctuUrl = new BehaviorSubject<string | undefined>(undefined);
+  //todo
   session?: Session;
 
   /** The name of the current focused/locked resource. Includes PM ("PMx") and non-PM resources. */
@@ -174,7 +128,7 @@ export class ConnectionService implements OnDestroy {
   /** The URL for the 2300 backend HTTP API. */
   backendUrl = new BehaviorSubject<string | undefined>(undefined);
 
-  private heartbeatMessageOpen: boolean = false;
+  private heartbeatMessageOpen = false;
 
   /** Emits the latest backend config once and completes when subscribed to. */
   private latestBackendConfig: Observable<BackendConfigOptions | undefined>;
@@ -186,7 +140,8 @@ export class ConnectionService implements OnDestroy {
     private http: HttpClient,
     logService: LogService,
     private backendVersionService: BackendVersionService,
-    private store: Store<PdeState>,
+    //tood
+    private store: Store<any>,
     private modal: ModalService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -282,7 +237,7 @@ export class ConnectionService implements OnDestroy {
     if (!fullAddress.startsWith('http')) {
       fullAddress = 'http://' + fullAddress;
     }
-    const nextBackendUrl: string = `${fullAddress}:${backendPort}`;
+    const nextBackendUrl = `${fullAddress}:${backendPort}`;
     this.http
       .post<Session>(`${nextBackendUrl}/sessionmanager/v3/opensession`, openSessionBody)
       .pipe(
@@ -346,6 +301,7 @@ export class ConnectionService implements OnDestroy {
                   .pipe(mergeMap(_result => empty()));
             }
           };
+
           return handleBackendError(this.store, err, { predicate, execute }).pipe(
             endWith(undefined),
           );
@@ -660,7 +616,8 @@ export class ConnectionService implements OnDestroy {
       this.router.navigate(['/']);
     }
     this.nextWizardStep(WizardStep.Session);
-    this.store.dispatch(resetClientSession());
+    //todo
+    //this.store.dispatch(resetClientSession());
   }
 
   /**
@@ -757,9 +714,7 @@ export class ConnectionService implements OnDestroy {
 
     HttpProgressService.registerBackgroundTaskUrlOnce(url);
     return this.http
-      .get<ConfigurationResponse>(url, {
-        params: { configurationType: 'machine' },
-      })
+      .get<ConfigurationResponse>(url, {params: { configurationType: 'machine' }})
       .pipe(
         map(response => response.machineConfiguration),
         startWith('PENDING' as const),

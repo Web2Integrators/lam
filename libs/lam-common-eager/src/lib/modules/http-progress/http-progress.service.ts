@@ -1,16 +1,19 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { partial } from 'lodash';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
-import { environment } from '../environments/environment';
-import { LogObserverDef } from '../environments/environment-types';
-import { getAbsoluteUrl } from './log/utils';
-import { incrementPendingRequests, decrementPendingRequests } from './app-state';
+// import { environment } from '../environments/environment';
+// import { LogObserverDef } from '../environments/environment-types';
+// import { getAbsoluteUrl } from './log/utils';
+//todo
+//import { incrementPendingRequests, decrementPendingRequests } from './app-state';
+import { LogObserverDef, Environment } from '../../sharedArtifcats/environment-types';
+import { getAbsoluteUrl } from '../log/utils';
 
-export const SLOW_REQUEST_TIME: number = 1000; // milliseconds
+export const SLOW_REQUEST_TIME = 1000; // milliseconds
 
 /**
  * Determine whether the given URL is a logging endpoint based on whether it matches any of the
@@ -50,7 +53,7 @@ const persistentBackgroundTaskUrls = new Set<string>();
 
 @Injectable()
 export class HttpProgressService implements HttpInterceptor {
-  constructor(private injector: Injector) {}
+  constructor(@Inject('envConfig') private environment: Environment,private injector: Injector) {}
 
   /**
    * Mark all future HTTP requests to this URL as background tasks, which prevent the
@@ -74,7 +77,7 @@ export class HttpProgressService implements HttpInterceptor {
     // Do not consider log messages to be pending requests else the user will be annoyed by a
     // spinner on screen if the logging server is down.
     //
-    let backgroundRequest = isLoggerUrl(req.url, environment.logObservers);
+    let backgroundRequest = isLoggerUrl(req.url, this.environment.logObservers);
 
     const store = this.injector.get(Store);
 
@@ -96,7 +99,8 @@ export class HttpProgressService implements HttpInterceptor {
 
     function addSlowRequest() {
       slowRequest = true;
-      store.dispatch(incrementPendingRequests());
+      //todo
+     // store.dispatch(incrementPendingRequests());
     }
 
     return next.handle(req).pipe(
@@ -113,7 +117,8 @@ export class HttpProgressService implements HttpInterceptor {
         if (slowRequest) {
           // if the request was slow enough to have incremented the pending request count,
           // decrement it now
-          store.dispatch(decrementPendingRequests());
+          //todo
+         // store.dispatch(decrementPendingRequests());
         }
       }),
     );

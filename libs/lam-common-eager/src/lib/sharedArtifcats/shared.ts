@@ -5,3 +5,4 @@ export const apiEndpoints = {
   },
   config: 'config',
 };
+

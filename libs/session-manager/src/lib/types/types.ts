@@ -36,6 +36,12 @@ export interface Resource {
   state: string;
 }
 
+export interface BackendConfigOptions {
+  arbitrationEnabled: boolean;
+  endpointEditorEnabled: boolean;
+  hydraEditorEnabled: boolean;
+}
+
 export interface Session {
   sessionID: string;
   toolID: string;
@@ -49,7 +55,45 @@ export interface Session {
 
 export interface PdeConfig {
   defaultToolAddress: string;
-  devBackendUrl: string;
-  devCtuUrl: string;
-  skipArbitration: boolean;
+  devBackendUrl?: string;
+  devCtuUrl?: string;
+  banner?: string;
+}
+
+export interface HostImage {
+  RecipeEditorArbitration: string;
+}
+
+export interface PMImage {
+  // These commented props are not currently used but do involve existing things in PDE (e.g. MMP):
+  // MMPControl: boolean;
+  // ModuleType: string;
+  // ModuleLabel: string;
+  HydraControllerInstalled?: boolean;
+  HydraControllerMode?: string;
+  OESType?: string;
+}
+
+export interface ImageOptions {
+  [imageName: string]: HostImage | PMImage; // Keys are "<name>Image", e.g. "HostImage", "PM1Image".
+}
+
+export interface MachineConfiguration {
+  // MachineConfiguration is a large object. These are only the properties we need.
+  imageOptions: ImageOptions;
+}
+
+export interface ConfigurationResponse {
+  machineConfiguration: MachineConfiguration;
+}
+
+/** Message sent from 2300 in a Server Sent Events data field. */
+export interface FocusChangedMessage {
+  resourceName: string; // e.g. "PM1"
+}
+
+/** Possible types sent from 2300 in a Server Sent Events type field. */
+export enum SseType {
+  FocusChanged = 'FocusChanged',
+  HydraTemplateDataChanged = 'HydraTemplateDataChanged',
 }

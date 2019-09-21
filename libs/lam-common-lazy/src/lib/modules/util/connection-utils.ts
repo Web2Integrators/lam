@@ -1,3 +1,4 @@
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { get } from 'lodash';
@@ -5,8 +6,8 @@ import { Observable, empty } from 'rxjs';
 
 
 //import { PdeState, processError } from '../../pde/state/pde-state';
-import { ConnectionErrorCode } from '../../session-manager/connection.service';
-import { BackendError } from '../../types/types';
+//import { ConnectionErrorCode } from '../../session-manager/connection.service';
+import { BackendError, ConnectionErrorCode } from '../../types/types';
 
 export interface BackendErrorStrategy<T> {
   predicate: (backendError: BackendError) => boolean;
@@ -27,7 +28,8 @@ export function extractErrorName(err: HttpErrorResponse) {
  * the caller.
  */
 export function handleBackendError<T = never>(
-  store: Store<PdeState>,
+  //todo
+  store: Store<any>,
   err: any,
   backendStrategy?: BackendErrorStrategy<T>,
 ): Observable<T> {
@@ -45,11 +47,13 @@ export function handleBackendError<T = never>(
     const message: string = backendError.description;
     const details: any = (JSON as any).decycle(backendError.details);
     const canProceed: boolean = backendError.details && backendError.details.canProceed;
-    store.dispatch(processError(title, message, details, canProceed));
+    //todo
+   // store.dispatch(processError(title, message, details, canProceed));
   } else {
-    store.dispatch(
-      processError('Http Error', 'Error posting to server', (JSON as any).decycle(err), false),
-    );
+    //todo
+    // store.dispatch(
+    //   processError('Http Error', 'Error posting to server', (JSON as any).decycle(err), false),
+    // );
   }
   return empty();
 }

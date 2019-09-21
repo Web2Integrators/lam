@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Actions } from '@ngrx/effects';
+//todo
+//import { Actions } from '@ngrx/effects';
 
 import { LogService, Logger } from '../log/log.service';
 
@@ -10,9 +11,10 @@ import { LogService, Logger } from '../log/log.service';
  */
 @NgModule()
 export class ActionLoggingModule {
-  constructor(logService: LogService, actions: Actions) {
+  //todo
+  constructor(logService: LogService, actions: any) {
     const log: Logger = logService.createLogger('ActionLoggingModule');
 
-    actions.subscribe((a: Action) => log.debug(`Processing action '${a.type}':`, a));
+   // actions.subscribe((a: Action) => log.debug(`Processing action '${a.type}':`, a));
   }
 }

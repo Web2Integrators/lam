@@ -1,4 +1,5 @@
-import * as XRegExp from 'xregexp';
+//todo
+// import * as XRegExp from 'xregexp';
 
-// Tag function for handling regex template literals
-export const xr = XRegExp.tag('xs');
+// // Tag function for handling regex template literals
+// export const xr = XRegExp.tag('xs');

@@ -4,9 +4,10 @@ import * as _ from 'lodash';
 import { Subject } from 'rxjs';
 import { bufferTime, filter, mergeMap, retry, takeUntil } from 'rxjs/operators';
 
-import { LogObserverCreator } from '../../environments/environment-types';
+
 import { LogItem, LogObserver } from './log.service';
 import { getAbsoluteUrl } from './utils';
+import { LogObserverCreator } from '../../sharedArtifcats/environment-types';
 
 // Interval between batches in milliseconds
 const LOG_BUFFER_TIME = 1000;

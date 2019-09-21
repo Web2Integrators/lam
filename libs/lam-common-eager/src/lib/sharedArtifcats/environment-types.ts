@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
-import { LogLevel,LogObserver } from '@lamresearch/lam-common-eager';
+import { LogObserver, LogLevel } from '../modules/log/log.service';
+
 
 
 export interface LogObserverCreator<T extends LogObserver, P> {

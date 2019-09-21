@@ -1,6 +1,7 @@
-import { apiEndpoints,ConsoleLogObserverService ,LogLevel } from '@lamresearch/lam-common-eager';
-import { PdeAjaxLogObserverService } from '@lamresearch/lam-common-lazy';
-import { Environment } from './environment-types';
+import { apiEndpoints, ConsoleLogObserverService, LogLevel, Environment } from '@lamresearch/lam-common-eager';
+//todo
+//import { PdeAjaxLogObserverService } from '@lamresearch/lam-common-lazy';
+
 
 export const environment: Environment = {
   production: true,

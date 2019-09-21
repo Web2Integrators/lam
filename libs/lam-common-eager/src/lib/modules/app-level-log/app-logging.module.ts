@@ -1,18 +1,17 @@
-import { Injector, NgModule } from '@angular/core';
+import { Injector, NgModule, Inject } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
-import { environment } from '../environments/environment';
-import { LogObserverDef } from '../environments/environment-types';
 import { ActionLoggingModule } from '../store/action-logging.module';
 import { HttpLoggingModule } from '../http-logging/http-logging.module';
 import { LogModule } from '../log/log.module';
 import { LogEntries, LogItem, LogService, Logger } from '../log/log.service';
+import { LogObserverDef, Environment } from '../../sharedArtifcats/environment-types';
 
 @NgModule({
   imports: [LogModule, ActionLoggingModule, HttpLoggingModule],
 })
 export class AppLoggingModule {
-  constructor(logEntries: LogEntries, logService: LogService, injector: Injector) {
+  constructor(@Inject('envConfig') environment: Environment,logEntries: LogEntries, logService: LogService, injector: Injector) {
     const log: Logger = logService.createLogger('AppLoggingModule');
 
     // Set up any log observers defined in the environment.

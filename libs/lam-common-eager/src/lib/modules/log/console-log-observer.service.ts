@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { LogObserverCreator } from '../../environments/environment-types';
+
 import { LogItem, LogLevel, LogObserver } from './log.service';
+import { LogObserverCreator } from '../../sharedArtifcats/environment-types';
 
 export class ConsoleLogObserver implements LogObserver {
   // Print the log message (prefixed with the topic) and details (if any) to the console using the
