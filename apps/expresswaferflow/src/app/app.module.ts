@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SharedModule, routes } from '@lamresearch/shared';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LamCommonEagerModule, routes } from '@lamresearch/lam-common-eager';
+
 
 
 @NgModule({
@@ -12,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
-    SharedModule,
+    LamCommonEagerModule,
     BrowserAnimationsModule
   ],
   providers: [],

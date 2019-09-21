@@ -1,3 +1,36 @@
+export interface GasMapping {
+  [gasName: string]: string | null;
+}
+
+export interface RcpGasInfo {
+  [gasName: string]: {
+    GasName: string;
+    RcpMaxFlow: number;
+  };
+}
+
+export interface MfcGasInfo {
+  [gasName: string]: {
+    GasName: string;
+    MaxFlow: number;
+  };
+}
+export interface GasMapError {
+  errMsg: string;
+  rcpGasInfo: RcpGasInfo;
+  mfcGasInfo: MfcGasInfo;
+  mapDict: GasMapping;
+  nonMappingGases: string[];
+}
+export interface BackendErrorDetails {
+  gasMapErrorMessage: GasMapError;
+  canProceed: boolean;
+}
+export interface BackendError {
+  errorName: string;
+  details: BackendErrorDetails;
+  description: string;
+}
 /**
  * The desktop application's possible UI modes.
  */

@@ -7,9 +7,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-
-import { ColumnCustomHeaderComponent } from './ag-grid-custom-header/column-custom-header.component';
-import { ColumnGroupCustomHeaderComponent } from './ag-grid-custom-header/column-group-custom-header.component';
+//todo
+// import { ColumnCustomHeaderComponent } from './ag-grid-custom-header/column-custom-header.component';
+// import { ColumnGroupCustomHeaderComponent } from './ag-grid-custom-header/column-group-custom-header.component';
 import { AutofocusDirective } from './autofocus/autofocus.directive';
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { LamSelectComponent } from './select/lam-select.component';
@@ -28,16 +28,16 @@ import { LamSelectComponent } from './select/lam-select.component';
   declarations: [
     AutofocusDirective,
     ProgressIndicatorComponent,
-    ColumnCustomHeaderComponent,
-    ColumnGroupCustomHeaderComponent,
+   // ColumnCustomHeaderComponent,
+    //ColumnGroupCustomHeaderComponent,
     LamSelectComponent,
   ],
   entryComponents: [ProgressIndicatorComponent],
   exports: [
     AutofocusDirective,
     ProgressIndicatorComponent,
-    ColumnCustomHeaderComponent,
-    ColumnGroupCustomHeaderComponent,
+   // ColumnCustomHeaderComponent,
+   // ColumnGroupCustomHeaderComponent,
     LamSelectComponent,
   ],
 })

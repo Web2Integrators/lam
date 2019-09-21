@@ -3,9 +3,10 @@ import { Store } from '@ngrx/store';
 import { get } from 'lodash';
 import { Observable, empty } from 'rxjs';
 
-import { BackendError } from '../../pde/pde-types';
-import { PdeState, processError } from '../../pde/state/pde-state';
+
+//import { PdeState, processError } from '../../pde/state/pde-state';
 import { ConnectionErrorCode } from '../../session-manager/connection.service';
+import { BackendError } from '../../types/types';
 
 export interface BackendErrorStrategy<T> {
   predicate: (backendError: BackendError) => boolean;

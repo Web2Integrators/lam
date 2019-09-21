@@ -9,8 +9,9 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Logger, LogService } from '@lamresearch/lam-common-eager';
 
-import { LogService, Logger } from './log/log.service';
+
 
 /**
  * An HTTP interceptor that logs all HTTP requests via the Logger.
