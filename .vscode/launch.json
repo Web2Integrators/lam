@@ -1,0 +1,41 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Node server",
+      "program": "${workspaceFolder}/pde/dist/server/src/app.js"
+    },
+
+    {
+      "name": "Launch Protractor",
+      "type": "node",
+      "request": "launch",
+      "cwd":"${workspaceRoot}/client",
+      "program": "${workspaceRoot}/client/node_modules/protractor/bin/protractor",
+      "stopOnEntry": false,
+      "args": ["${workspaceRoot}/client/protractor.conf.js", "--suite", "full"],
+      "preLaunchTask": null,
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome/EWF",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/apps/expresswaferflow",
+      "sourceMaps": true
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome/PDE Devmode",
+      "url": "http://localhost:8080/devMode/PM3",
+      "webRoot": "${workspaceFolder}/client",
+      "sourceMaps": true
+    }
+  ]
+}

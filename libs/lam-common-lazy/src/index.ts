@@ -6,4 +6,4 @@ export * from './lib/types/types'
 export * from './lib/modules/util/rx-utils'
 export * from './lib/modules/util/connection-utils'
 export * from './lib/services/electron.service'
-
+export * from './lib/modules/modal-dialogs/modal.module'

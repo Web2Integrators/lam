@@ -9,7 +9,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Logger, LogService } from '@lamresearch/lam-common-eager';
+import { Logger, LogService } from '../log/log.service';
+
 
 
 

@@ -12,7 +12,7 @@ import { LogService, Logger } from '../log/log.service';
 @NgModule()
 export class ActionLoggingModule {
   //todo
-  constructor(logService: LogService, actions: any) {
+  constructor(logService: LogService) {
     const log: Logger = logService.createLogger('ActionLoggingModule');
 
    // actions.subscribe((a: Action) => log.debug(`Processing action '${a.type}':`, a));

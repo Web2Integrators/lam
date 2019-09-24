@@ -26,7 +26,7 @@ import {
   SelectionDialogComponentData,
 } from './selection-dialog/selection-dialog.component';
 
-@Injectable({ providedIn: ModalModule }) // can't use root: entryComponents don't work that way
+@Injectable({ providedIn: 'root' }) // can't use root: entryComponents don't work that way
 export class ModalService {
   constructor(private modal: MatDialog) {}
 

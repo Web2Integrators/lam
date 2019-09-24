@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'landing',
+    path: '',
     loadChildren: () =>
       import('@lamresearch/landing').then(
         m => m.LandingModule
       )
   },
   {
-    path: '',
+    path: 'session',
     loadChildren: () =>
       import("@lamresearch/session-manager").then(
         m => m.SessionManagerModule

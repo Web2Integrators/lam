@@ -5,30 +5,14 @@ import { Store } from '@ngrx/store';
 import { cloneDeep, isUndefined } from 'lodash';
 import {  BehaviorSubject,  Observable,  Subscription,  UnaryFunction,  empty,  interval,  of,  pipe,  combineLatest,  Subject,  from,} from 'rxjs';
 import {  catchError,  distinctUntilChanged,  filter,  map,  mapTo,  mergeMap,  switchMap,  take,  takeUntil,  tap,  timeout,  withLatestFrom,  endWith,  startWith,  shareReplay,} from 'rxjs/operators';
-
-
-
-import { MachineResource, Session, BackendConfigOptions, MachineConfiguration, HostImage, PMImage, Resource, LoginCredentials, ConfigurationResponse, HeartbeatResponse } from '../types/types';
+import { MachineResource, Session, BackendConfigOptions, MachineConfiguration, HostImage, PMImage, Resource, LoginCredentials, ConfigurationResponse, HeartbeatResponse, WizardStep, InvalidState, ResetConnectionMode } from '../types/types';
 import { BackendVersionService,ModalService, BackendError, handleBackendError, extractErrorName, ConnectionErrorCode, truthy, UiMode, ElectronService, Environment } from '@lamresearch/lam-common-lazy';
-// todo tslint:disable-next-line:nx-enforce-module-boundaries
-// tslint:disable-next-line: nx-enforce-module-boundaries
+// tslint:disable-next-line:nx-enforce-module-boundaries
 import { Logger, LogService,  HttpProgressService } from '@lamresearch/lam-common-eager';
-import { filterResources } from '../utils/resource-utils';
+import { filterResources, extractBackendConfig, getResourceLockName } from '../utils/resource-utils';
 
 
-export enum WizardStep {
-  Session,
-  Login,
-  Arbitration,
-  Complete,
-}
-
-export enum ResetConnectionMode {
-  Normal,
-  FatalError,
-}
-
-
+ interface ImageOptions {imageName: string; optionName: string; optionValue: string;}
 
 const arbitrationTimeout = 60 * 1000;
 const backendPort = '18072';
@@ -41,64 +25,6 @@ const openSessionBody = {
   },
 };
 const MINIMUM_CTU_VERSION = '1.0';
-
-interface ImageOptions {
-  imageName: string;
-  optionName: string;
-  optionValue: string;
-}
-
-export type InvalidState = 'PENDING' | undefined;
-
-/** Get the name of the resource lock (e.g. "PMxRecipe") from the name (e.g. "PMx") */
-const getResourceLockName = (resourceName: string) => `${resourceName}Recipe`;
-
-/** Determine whether the resource name is a process module and strip undefined from the type. */
-export const isProcessModule = (resourceName?: string): boolean => {
-  return !!resourceName && resourceName.startsWith('PM');
-};
-
-/**
- * Get the backend configuration options (dynamic feature guards) from a machine configuration.
- * Rules:
- * 1. arbitrationEnabled is true iff ("if and only if"):
- *  - String(imageOptions.HostImage.RecipeEditorArbitration) is not "Disable" (case-insensitive).
- * 2. endpointEditorEnabled is true iff:
- *  - resourceName is not an empty string, and
- *  - imageOptions.PM#Image.OESType is defined, and
- *  - String(imageOptions.PM#Image.OESType) is not "None" (case-insensitive).
- * 3. hydraEditorEnabled is true iff:
- *  - resourceName is not an empty string, and
- *  - imageOptions.PM#Image.HydraControllerInstalled is truthy, and
- *  - String(imageOptions.PM#Image.HydraControllerMode) is "Enable" (case-insensitive).
- * @param config The machine configuration object.
- */
-//todo : | InvalidState removed
-export function extractBackendConfig(config: MachineConfiguration, resourceName: string): BackendConfigOptions | InvalidState {
-  //todo
-  // if (!config || config === 'PENDING') {
-  //   return config;
-  // }
-  const hostImage = config.imageOptions.HostImage as HostImage;
-  let endpointEditorEnabled = false;
-  let hydraEditorEnabled = false;
-  if (isProcessModule(resourceName)) {
-    const pmOpts = config.imageOptions[`${resourceName}Image`] as PMImage;
-    if (!pmOpts) {
-      throw new Error(`Options not found in machine configuration for resource "${resourceName}"`);
-    }
-    const oesType: string | undefined = pmOpts.OESType;
-    endpointEditorEnabled = !isUndefined(oesType) && String(oesType).toLowerCase() !== 'none';
-    const hydraControllerInstalled: boolean = !!pmOpts.HydraControllerInstalled;
-    const hcmEnabled: boolean = String(pmOpts.HydraControllerMode).toLowerCase() === 'enable';
-    hydraEditorEnabled = hydraControllerInstalled && hcmEnabled;
-  }
-  return {
-    arbitrationEnabled: String(hostImage.RecipeEditorArbitration).toLowerCase() !== 'disable',
-    endpointEditorEnabled,
-    hydraEditorEnabled,
-  };
-}
 
 /**
  * Service to manage the session, login, arbitration, etc.

@@ -1,5 +1,5 @@
-import { Resource, MachineResource } from '../types/types';
-
+import { Resource, MachineResource, MachineConfiguration, BackendConfigOptions, InvalidState, HostImage, PMImage } from '../types/types';
+import {  isUndefined } from 'lodash';
 
 /**
  * Given a recipe editor resource name ('PM3Recipe'), returns the process module portion ('PM3'),
@@ -34,4 +34,54 @@ export function filterResources(resources: Resource[]): MachineResource[] {
   });
 
   return filteredResources;
+}
+
+/** Get the name of the resource lock (e.g. "PMxRecipe") from the name (e.g. "PMx") */
+export const getResourceLockName = (resourceName: string) => `${resourceName}Recipe`;
+
+/** Determine whether the resource name is a process module and strip undefined from the type. */
+export const isProcessModule = (resourceName?: string): boolean => {
+  return !!resourceName && resourceName.startsWith('PM');
+};
+
+/**
+ * Get the backend configuration options (dynamic feature guards) from a machine configuration.
+ * Rules:
+ * 1. arbitrationEnabled is true iff ("if and only if"):
+ *  - String(imageOptions.HostImage.RecipeEditorArbitration) is not "Disable" (case-insensitive).
+ * 2. endpointEditorEnabled is true iff:
+ *  - resourceName is not an empty string, and
+ *  - imageOptions.PM#Image.OESType is defined, and
+ *  - String(imageOptions.PM#Image.OESType) is not "None" (case-insensitive).
+ * 3. hydraEditorEnabled is true iff:
+ *  - resourceName is not an empty string, and
+ *  - imageOptions.PM#Image.HydraControllerInstalled is truthy, and
+ *  - String(imageOptions.PM#Image.HydraControllerMode) is "Enable" (case-insensitive).
+ * @param config The machine configuration object.
+ */
+//todo : | InvalidState removed
+export function extractBackendConfig(config: MachineConfiguration, resourceName: string): BackendConfigOptions | InvalidState {
+  //todo
+  if (!config || config === 'PENDING') {
+    return config;
+  }
+  const hostImage = config.imageOptions.HostImage as HostImage;
+  let endpointEditorEnabled = false;
+  let hydraEditorEnabled = false;
+  if (isProcessModule(resourceName)) {
+    const pmOpts = config.imageOptions[`${resourceName}Image`] as PMImage;
+    if (!pmOpts) {
+      throw new Error(`Options not found in machine configuration for resource "${resourceName}"`);
+    }
+    const oesType: string | undefined = pmOpts.OESType;
+    endpointEditorEnabled = !isUndefined(oesType) && String(oesType).toLowerCase() !== 'none';
+    const hydraControllerInstalled: boolean = !!pmOpts.HydraControllerInstalled;
+    const hcmEnabled: boolean = String(pmOpts.HydraControllerMode).toLowerCase() === 'enable';
+    hydraEditorEnabled = hydraControllerInstalled && hcmEnabled;
+  }
+  return {
+    arbitrationEnabled: String(hostImage.RecipeEditorArbitration).toLowerCase() !== 'disable',
+    endpointEditorEnabled,
+    hydraEditorEnabled,
+  };
 }

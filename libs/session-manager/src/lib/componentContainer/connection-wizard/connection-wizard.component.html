@@ -1,1 +1,8 @@
-<p>connection-wizard works!</p>
+<ng-container [ngSwitch]="step | async">
+  <lam-session *ngSwitchCase="wizardStep.Session"></lam-session>
+  <lam-login *ngSwitchCase="wizardStep.Login"></lam-login>
+  <lam-resource-lock
+    e2e="lamResourceLock"
+    *ngSwitchCase="wizardStep.Arbitration"
+  ></lam-resource-lock>
+</ng-container>

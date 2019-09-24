@@ -1,0 +1,31 @@
+<div class="disable-layer"></div>
+<mat-card class="centered-card">
+  <mat-card-title>Sign In to {{ toolId }}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="loginForm">
+      <mat-form-field>
+        <input e2e="login" matInput type="text" placeholder="Login" formControlName="username" />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          e2e="password"
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+    </form>
+    <p e2e="warning" *ngIf="loginFailure | async" class="warn-text">Invalid username or password</p>
+    <button
+      e2e="loginBtn"
+      (click)="login()"
+      mat-raised-button
+      color="accent"
+      [disabled]="!(connected | async)"
+    >
+      {{ (connected | async) ? 'SIGN IN' : 'PLEASE WAIT...' }}
+    </button>
+    <button (click)="closeSession()" mat-button>CONNECT TO ANOTHER TOOL</button>
+  </mat-card-content>
+</mat-card>

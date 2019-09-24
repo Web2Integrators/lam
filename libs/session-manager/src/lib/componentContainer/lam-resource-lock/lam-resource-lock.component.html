@@ -1,0 +1,18 @@
+<div class="disable-layer"></div>
+<mat-card class="centered-card">
+  <mat-card-title>Select Chamber</mat-card-title>
+  <mat-card-content>
+    <div *ngFor="let resource of resources | async">
+      <button
+        mat-fab
+        color="accent"
+        (click)="lockResource(resource.displayName)"
+        [disabled]="resource.offline"
+      >
+        {{ resource.displayName }}
+      </button>
+      {{ resource.modelName }}
+      <i class="fa fa-lock" *ngIf="resource.locked"></i>
+    </div>
+  </mat-card-content>
+</mat-card>

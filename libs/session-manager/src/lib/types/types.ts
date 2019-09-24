@@ -97,3 +97,19 @@ export enum SseType {
   FocusChanged = 'FocusChanged',
   HydraTemplateDataChanged = 'HydraTemplateDataChanged',
 }
+
+export enum WizardStep {
+  Session,
+  Login,
+  Arbitration,
+  Complete,
+}
+
+export enum ResetConnectionMode {
+  Normal,
+  FatalError,
+}
+
+
+
+export type InvalidState = 'PENDING' | undefined;

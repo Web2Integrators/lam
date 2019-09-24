@@ -26,6 +26,6 @@ export class AppErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-  providers: [{ provide: ErrorHandler, useClass: AppErrorHandler }],
+ // providers: [{ provide: ErrorHandler, useClass: AppErrorHandler }],
 })
 export class AppErrorHandlingModule {}

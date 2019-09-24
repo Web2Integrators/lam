@@ -1,0 +1,21 @@
+<div class="disable-layer"></div>
+<mat-card class="centered-card">
+  <mat-card-title>Connect to tool</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input
+        e2e="toolIdInput"
+        matInput
+        placeholder="Tool Computer"
+        type="text"
+        [formControl]="toolId"
+      />
+    </mat-form-field>
+    <p e2e="warning" *ngIf="sessionError | async" class="warn-text">
+      Computer not found or offline
+    </p>
+    <button e2e="connectBtn" mat-raised-button color="accent" (click)="openSession()">
+      CONNECT
+    </button>
+  </mat-card-content>
+</mat-card>
