@@ -62,9 +62,9 @@ export const isProcessModule = (resourceName?: string): boolean => {
 //todo : | InvalidState removed
 export function extractBackendConfig(config: MachineConfiguration, resourceName: string): BackendConfigOptions | InvalidState {
   //todo
-  if (!config || config === 'PENDING') {
-    return config;
-  }
+  // if (!config || config === 'PENDING') {
+  //   return config;
+  // }
   const hostImage = config.imageOptions.HostImage as HostImage;
   let endpointEditorEnabled = false;
   let hydraEditorEnabled = false;

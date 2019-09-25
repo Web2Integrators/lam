@@ -20,7 +20,7 @@ import {
   MessageDialogComponent,
   MessageDialogComponentData,
 } from './message-dialog/message-dialog.component';
-import { ModalModule } from './modal.module';
+
 import {
   SelectionDialogComponent,
   SelectionDialogComponentData,

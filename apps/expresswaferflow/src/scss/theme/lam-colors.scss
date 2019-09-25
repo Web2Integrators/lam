@@ -1,0 +1,31 @@
+// Colors from the Lam Research Brand Style Guide. Note that the color
+// names are quoted, to avoid conflicting with CSS keywords like 'olive'
+// and 'orange'.
+
+$lam-colors: (
+  'black':          #000000, // Just here for completeness
+  'carolina-blue':  #82a5c0,
+  'charcoal':       #414042,
+  'chartreuse':     #9fbc2e,
+  'cloud':          #b9bbbd,
+  'corporate-blue': #00548b,
+  'cyan':           #0093c9,
+  'frost':          #eeefef,
+  'grape':          #6a0d69,
+  'lavender':       #a17a94,
+  'lime':           #c4d82e,
+  'mango':          #ffb700,
+  'marine':         #006068,
+  'moss':           #82a53c,
+  'olive':          #799900,
+  'orange':         #ee4d16,
+  'orchid':         #895881,
+  'rose':           #c76f94,
+  'sky':            #00aae7,
+  'sky-blue':       #92d7e7,
+  'steel':          #6d6e71,
+  'sunset':         #ff9849,
+  'tangerine':      #ff7600,
+  'turquoise':      #00a1af,
+) !default;
+

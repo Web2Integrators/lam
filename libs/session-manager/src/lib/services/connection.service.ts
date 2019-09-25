@@ -430,6 +430,7 @@ export class ConnectionService implements OnDestroy {
       truthy(), // Do nothing if we couldn't get the backend config object.
       switchMap((backendConfig: BackendConfigOptions) => {
         // 1) lock the resource (if necessary)
+        //todo:remove this
         if (!backendConfig.arbitrationEnabled) {
           // needs to have something in the observable to trigger the next step
           return of(undefined);

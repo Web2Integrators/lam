@@ -1,0 +1,208 @@
+// This file contains all the css that is used to override Angular Material in order to align
+// with the Lam design guidelines.
+@import './theme/lam-theme';
+
+mat-dialog-actions {
+  float: right;
+
+  button.mat-stroked-button {
+    // These changes are to align with page 47 of the Lam design guidelines PowerPoint
+    margin-left: 5px;
+    color: mat-color($app-accent, 500);
+    text-transform: uppercase;
+  }
+}
+
+.mat-dialog-title {
+  // These changes are to align with page 47 of the Lam design guidelines PowerPoint
+  color: mat-color($app-accent, 900);
+}
+
+.mat-tab-label-active {
+  // This change is in order to align with page 11 of the Lam design guidelines PowerPoint using
+  // the primary color
+  color: mat-color($app-primary, 900);
+}
+
+mat-card.centered-card {
+  // .centered-card is to create the dialog-like card used for the arbitration process
+  z-index: 801;
+  width: 400px;
+  margin: auto;
+  margin-top: 12%;
+
+  mat-card-title {
+    // These changes are to match page 46 and 47 of the Lam design guidelines PowerPoint
+    font-size: 20px;
+    color: mat-color($app-accent, 900);
+  }
+
+  .mat-raised-button, .mat-button {
+    width: 100%;
+  }
+  .mat-fab {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+mat-toolbar {
+  &.resource-toolbar, &.recipe-toolbar {
+    z-index: 801;
+  }
+  &.resource-toolbar {
+    // These changes are in order to align with page 11 and 14 of the Lam Guidelines PowerPoint
+    // using the primary variant color and the body2 typography
+    height: 36px;
+    font-size: 14px;
+    background-color: mat-color($app-primary, 900);
+    color: mat-contrast($app-primary, 900);
+
+    span {
+      margin-right: 25px;
+    }
+  }
+  &.recipe-toolbar {
+    // These changes are in order to align with page 11 and 14 of the Lam Guidelines PowerPoint
+    // using the primary color and the body1 typography
+    height: 44px;
+    font-size: 16px;
+    background-color: mat-color($app-primary, 500);
+    color: mat-contrast($app-primary, 500);
+
+    button {
+      color: mat-contrast($app-primary, 500);
+    }
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  // Makes the border and text color of the menu button the contrast of the toolbar color 
+  .mat-stroked-button:not([disabled]) {
+    color: mat-contrast($app-primary, 900);
+    border-color: mat-contrast($app-primary, 900);
+  }
+}
+
+.mat-menu-panel.recipe-menu {
+  max-width: 100%;
+}
+.mat-menu-content {
+  .active-recipe {
+    // Highlights the active recipe in the recipe menu
+    color: mat-color($app-primary, 500);
+    .mat-icon {
+      color: inherit;
+    }
+  }
+
+  label {
+    padding: 0 16px;
+    line-height: 48px;
+    height: 48px;
+    margin-bottom: -8px;
+    display: block;
+    opacity: 0.6;
+  }
+}
+
+.mat-menu-item.selected {
+  // Highlights a selected item in a dropdown menu
+  color: mat-color($app-primary, 900);
+  font-weight: bold;
+}
+
+// Formats the radio group that is used for the recipe selection dialog
+.row-radio-group mat-radio-button {
+  padding-left: 15px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.radio-group-label, .column-radio-group mat-radio-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+mat-form-field.inline {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+pde-info {
+  mat-form-field {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+mat-form-field.recipe-name-filter, pde-grid-filters-view mat-form-field {
+  width: 150px; // This width helps the app respond well to small screens
+}
+
+mat-slider.mat-slider-horizontal {
+  min-width: 100px;
+}
+
+// Material styling specific to the endpoint editor
+endpoint-editor {
+  mat-form-field.mat-form-field,
+  mat-slide-toggle.mat-slide-toggle,
+  span {
+    display: block;
+  }
+
+  ee-algorithm-params {
+    .mat-raised-button {
+      &.algorithm-dialog {
+        width: 100%;
+      }
+    }
+
+    mat-card {
+      min-width: 240px;
+      mat-card-content {
+        padding-top: 10px;
+      }
+    }
+
+  }
+}
+
+ee-full-spectrum-ep-dialog {
+  mat-form-field.mat-form-field,
+  mat-slide-toggle.mat-slide-toggle,
+  mat-radio-button.mat-radio-button,
+  span {
+    display: block;
+  }
+
+  mat-dialog-content.mat-dialog-content {
+    min-width: 600px;
+  }
+
+  mat-expansion-panel {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  mat-card {
+    margin-bottom: 10px;
+  }
+
+  mat-radio-group {
+    display: flex;
+    align-items: center;
+  }
+
+  mat-radio-button {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  mat-panel-description.invalid {
+    color: mat-color($app-warn);
+  }
+}

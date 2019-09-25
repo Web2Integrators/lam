@@ -1,0 +1,174 @@
+@import './theme/lam-theme';
+
+// A helpful example for resizing styles in the grid:
+// https://github.com/ag-grid/ag-grid-material/tree/master/custom-sizing
+//
+
+// Set ag-grid theme variables before importing the themes:
+$grid-size: 5px; // 8 by default. Must also be set in gridOptions.rowHeight.
+$header-height: 25px;
+$row-border-width: 0;
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+// Helper classes for making the text within an element a theme color
+.primary-text {
+  color: mat-color($app-primary, 500);
+}
+.accent-text {
+  color: mat-color($app-accent, 500);
+}
+.warn-text {
+  color: mat-color($app-warn, 500);
+}
+
+.non-default {
+  color: black;
+  font-weight: bold;
+}
+
+.selected {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+// Creates the greyed out background behind the arbitration dialog cards
+div.disable-layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  z-index: 800;
+  background-color: lightgray;
+}
+
+.recipe-menu-trigger {
+  // These styles are to match with pages 11 and 14 of the Lam design guidelines with
+  // H6 typography and the primary color
+  font-size: 20px;
+  color: mat-color($app-primary, 500);
+  font-weight: bolder;
+}
+.resource-chooser {
+  // These styles prevent the resource switcher from expanding out of the bounds of the toolbar
+  .mat-button-toggle-label-content {
+    height: 36px;
+  }
+  .mat-button-toggle-group-appearance-standard {
+    margin-top: -1px;
+  }
+  .mat-button-toggle-checked .mat-button-toggle-focus-overlay {
+    border-bottom: 0;
+  }
+  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 36px;
+  }
+
+  .span {
+    font-weight: bold;
+  }
+}
+
+.pde-col-menu {
+  z-index: 1;
+}
+
+.column-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.radio-group-label {
+  display: block;
+}
+
+.fa-disabled {
+  opacity: 0.5;
+}
+
+.menu-sub-label {
+  color: mat-color($app-primary, 900);
+  text-align: right;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.menu-header {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.sat-popover-container {
+  box-shadow:
+    0 3px 1px -2px rgba(0,0,0,.2),
+    0 2px 2px 0 rgba(0,0,0,.14),
+    0 1px 5px 0 rgba(0,0,0,.12);
+  padding: 16px;
+  background: white;
+  max-width: 400px;
+  line-height: 28px;
+}
+
+pde-main-recipe,
+pde-mmp,
+pde-constants {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+
+  .action-button {
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+
+  .grid-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 61px;
+  }
+}
+
+pde-info {
+  padding-left: 25px;
+  padding-right: 25px;
+  border-top: 1px solid #E0E0E0;
+}
+
+pde-validation {
+  .warning {
+    color: mat-color($app-warn, 500);
+  }
+  .critical {
+    color: mat-color($app-warn, 900);
+  }
+}
+
+pde-gas-mapping {
+  .avail-hdr {
+    background-color: mat-color($app-primary, 50);
+  }
+  .avail-item {
+    border-color: #CCC;
+  }
+  .placeholder {
+    border-color: #CCC;
+    color: #CCC;
+  }
+}
+
+endpoint-editor {
+  ee-settings {
+    h2.settings-header {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+}

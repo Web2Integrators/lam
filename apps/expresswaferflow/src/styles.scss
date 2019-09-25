@@ -2,3 +2,64 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Material Design icons:
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('third_party/material-icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('third_party/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+    url('third_party/material-icons/MaterialIcons-Regular.woff') format('woff'),
+    url('third_party/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased; /* Support for all WebKit browsers. */
+  text-rendering: optimizeLegibility; /* Support for Safari and Chrome. */
+  -moz-osx-font-smoothing: grayscale; /* Support for Firefox. */
+  font-feature-settings: 'liga'; /* Support for IE. */
+}
+
+// Font Awesome (must import after the Material Design icons):
+$fa-font-path : '~font-awesome/fonts';
+@import '~font-awesome/scss/font-awesome';
+
+// Titillium web font:
+@font-face { /* titillium-web-400normal - latin */
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-display: swap;
+  // XXX: Load only the Titillium 400 font because when all font weights are loaded our code or the
+  // browser uses a higher font weight which changes the appearance of all the bold text in PDE:
+  font-weight: 400;
+  src:
+    local('Titillium Web Regular '),
+    local('Titillium Web-Regular'),
+    url('~typeface-titillium-web/files/titillium-web-latin-400.woff2') format('woff2'), /* Super Modern Browsers */
+    url('~typeface-titillium-web/files/titillium-web-latin-400.woff2') format('woff'); /* Modern Browsers */
+}
+
+// Load the PDE material theme
+@import 'scss/theme/lam-theme-mixins';
+
+// Load Lam PDE-specific styles
+@import 'scss/lam-pde-styles';
+
+
+
+// Import Lam material styles
+@import 'scss/lam-material-override.scss';

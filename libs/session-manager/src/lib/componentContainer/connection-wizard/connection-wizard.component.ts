@@ -29,7 +29,7 @@ export class ConnectionWizardComponent implements OnDestroy {
     conn
       .initializeConnection(this.unsubscribe, address, resource)
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe();
+      .subscribe(val=>console.log(val));
   }
 
   ngOnDestroy() {

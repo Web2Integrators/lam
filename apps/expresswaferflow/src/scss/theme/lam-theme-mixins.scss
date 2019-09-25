@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import './lam-theme.scss';
+
+$app-primary: mat-palette($lam-material-primary);
+$app-accent:  mat-palette($lam-material-secondary);
+$app-warn:    mat-palette($lam-material-warn);
+
+$typography: mat-typography-config(
+  $font-family: 'Titillium Web, sans-serif',
+  $button: mat-typography-level(16px, 24px, 500)
+  );
+
+$theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include angular-material-theme($theme);
+@include angular-material-typography($typography);

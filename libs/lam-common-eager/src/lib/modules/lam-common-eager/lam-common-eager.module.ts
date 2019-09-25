@@ -14,6 +14,7 @@ import { LogEntries, LogService, Logger, LogItem } from '../log/log.service';
 import { RootComponent } from './componentContainers/root/root.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material';
+import { ModalModule } from '@lamresearch/lam-common-lazy';
 const eagerModules = [
   CommonModule,
   AppErrorHandlingModule,
@@ -25,7 +26,7 @@ const eagerModules = [
 ]
 @NgModule({
   declarations: [RootComponent],
-  imports: [... eagerModules,RouterModule,MatDialogModule],//todo
+  imports: [... eagerModules,RouterModule,MatDialogModule,ModalModule],//todo:whywe need MatDialog here
   exports : [... eagerModules,RootComponent]
 })
 export class LamCommonEagerModule {
