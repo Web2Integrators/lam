@@ -41,11 +41,12 @@ export class BackendVersionService implements OnDestroy {
   getCTUVersion(ctuUrl: string): Observable<string | undefined> {
     const url = `${ctuUrl}/image/v1/versions`;
     return this.http.get<ICTUVersionResponse>(url).pipe(
-      map(resp => {
+      //todo:fix any
+      map((resp: any) => {
         if (!resp || !resp.apiServices) {
           return undefined;
         }
-        return resp.apiServices.processDevelopmentEnvironmentService;
+        return resp.apiServices.lamWaferFlowService;
       }),
       catchError(err => {
         console.log(err);

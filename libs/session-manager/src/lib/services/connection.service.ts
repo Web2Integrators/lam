@@ -17,14 +17,15 @@ import { filterResources, extractBackendConfig, getResourceLockName } from '../u
 const arbitrationTimeout = 60 * 1000;
 const backendPort = '18072';
 const openSessionBody = {
-  clientname: 'PDE Client',
-  worker: {
-    type: 'ctu',
-    window: 'hide',
-    launcher: 'hide',
-  },
+  clientname: 'Express Wafer Flow',
+  // worker: {
+  //   type: 'ctu',
+  //   window: 'hide',
+  //   launcher: 'hide',
+  // },
 };
-const MINIMUM_CTU_VERSION = '1.0';
+//todo:fix lateri
+const MINIMUM_CTU_VERSION = '0.0.0';
 
 /**
  * Service to manage the session, login, arbitration, etc.
@@ -168,15 +169,15 @@ export class ConnectionService implements OnDestroy {
       .post<Session>(`${nextBackendUrl}/sessionmanager/v3/opensession`, openSessionBody)
       .pipe(
         timeout(arbitrationTimeout),
-        map(session => ({
-          session,
-          ctuUrl: `${fullAddress}:${session.workerPort}`,
-        })),
+        // map(session => ({
+        //   session,
+        //   ctuUrl: `${fullAddress}:${session.workerPort}`,
+        // })),
         // Only set backend URL after opensession succeeds, e.g. to not get machine config eagerly:
         tap(() => this.backendUrl.next(nextBackendUrl)),
-        tap(conn => this.ctuUrl.next(conn.ctuUrl)),
+        tap(conn => this.ctuUrl.next(nextBackendUrl)),
         switchMap(conn => {
-          return this.backendVersionService.getCTUVersion(conn.ctuUrl).pipe(
+          return this.backendVersionService.getCTUVersion(nextBackendUrl).pipe(
             switchMap(version => {
               // We lose the patch version with parse float but we don't care about that..
               if (!version || parseFloat(version) < parseFloat(MINIMUM_CTU_VERSION)) {
@@ -235,7 +236,7 @@ export class ConnectionService implements OnDestroy {
         takeUntil(this.unsubscribe),
       )
       .subscribe(conn => {
-        this.processSession(conn ? conn.session : undefined, address);
+        this.processSession(conn ? conn : undefined, address);
       });
   }
 
@@ -262,7 +263,10 @@ export class ConnectionService implements OnDestroy {
    */
   getResourceList() {
     this.getResourceDetails()
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(
+        takeUntil(this.unsubscribe),
+        tap(list =>console.log(list))
+      )
       .subscribe(list => this.resourceList.next(list));
   }
 
@@ -368,6 +372,7 @@ export class ConnectionService implements OnDestroy {
               this.log.error('Could not retrieve backend machine configuration.');
               return of(false);
             }
+            WaferflowEditor
 
             const resourceLockName: string = getResourceLockName(resourceName); // PMx --> PMxRecipe
             const resource = resourceList.find(r => r.machineResourceName === resourceLockName);
@@ -448,8 +453,8 @@ export class ConnectionService implements OnDestroy {
       // 2) focus the process module
       // The http.posts will each only ever emit once, so switchMap, concatMap, and mergeMap are
       // interchangeable here.
-      switchMap(_ => this.http.post(`${this.ctuUrl.value}/ui/v3/focus`, focusBody)),
-      this.setupBackendForFirstTimeUse(session),
+     // switchMap(_ => this.http.post(`${this.ctuUrl.value}/ui/v3/focus`, focusBody)),
+    //  this.setupBackendForFirstTimeUse(session),
       mapTo(true), // The backend returns an empty response, so on success, map to true.
       timeout(arbitrationTimeout),
       catchError((err: HttpErrorResponse) => {

@@ -19,16 +19,17 @@ export function getProcessModuleName(recipeEditorName: string): string | undefin
 export function filterResources(resources: Resource[]): MachineResource[] {
   const filteredResources: MachineResource[] = [];
   resources.forEach(r => {
-    const pmName = getProcessModuleName(r.machineResourceName);
-    if (pmName) {
-      const pm = resources.find(resource => resource.machineResourceName === pmName);
+   // const pmName = getProcessModuleName(r.machineResourceName);
+    //todo :find better way
+    if (r.machineResourceName === 'WaferflowEditor' ) {
+      const pm = resources.find(resource => resource.machineResourceName === r.machineResourceName);
       filteredResources.push({
-        displayName: pmName,
+        displayName: r.machineResourceName,
         machineResourceName: r.machineResourceName,
         locked: r.lockStatus === 'Locked',
         lockInformation: r.lockInformation,
         offline: r.state === 'Offline' || !pm || pm.state === 'Offline',
-        pmImage: `${pmName}Image`,
+        pmImage: `${r.machineResourceName}Image`,
       });
     }
   });
@@ -60,11 +61,11 @@ export const isProcessModule = (resourceName?: string): boolean => {
  * @param config The machine configuration object.
  */
 //todo : | InvalidState removed
-export function extractBackendConfig(config: MachineConfiguration, resourceName: string): BackendConfigOptions | InvalidState {
+export function extractBackendConfig(config: MachineConfiguration | InvalidState, resourceName: string): BackendConfigOptions | InvalidState {
   //todo
-  // if (!config || config === 'PENDING') {
-  //   return config;
-  // }
+  if (!config || config === 'PENDING') {
+    return 'PENDING';
+  }
   const hostImage = config.imageOptions.HostImage as HostImage;
   let endpointEditorEnabled = false;
   let hydraEditorEnabled = false;
