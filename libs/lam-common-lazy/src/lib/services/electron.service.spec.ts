@@ -1,6 +1,12 @@
 
+describe('Description', () => {
+  it('Test', () => {
+
+  });
+
+});
 //todo
-/// import { TestBed } from '@angular/core/testing';
+//  import { TestBed } from '@angular/core/testing';
 // import { PdeElectronBridgeV1, UiMode, Environment } from '@common/types';
 
 // import { ElectronService } from './electron.service';

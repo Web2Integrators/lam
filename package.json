@@ -48,6 +48,7 @@
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "typeface-titillium-web": "0.0.72",
+    "xregexp": "^4.2.4",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
@@ -56,9 +57,12 @@
     "@angular/cli": "8.3.5",
     "@angular/compiler-cli": "^8.2.0",
     "@angular/language-service": "^8.2.0",
+    "@ngrx/store-devtools": "^8.3.0",
     "@nrwl/cypress": "8.5.0",
     "@nrwl/jest": "8.5.0",
     "@nrwl/workspace": "8.5.0",
+    "@types/jasmine": "^3.4.1",
+    "@types/jasminewd2": "^2.0.7",
     "@types/jest": "24.0.18",
     "@types/lodash": "^4.14.138",
     "@types/node": "~12.7.5",
@@ -66,6 +70,7 @@
     "cypress": "3.4.1",
     "dotenv": "8.1.0",
     "eslint": "6.4.0",
+    "jasmine-core": "^3.5.0",
     "jest": "24.9.0",
     "jest-preset-angular": "7.1.1",
     "ng-packagr": "^5.4.0",

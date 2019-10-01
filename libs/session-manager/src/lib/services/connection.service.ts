@@ -372,7 +372,7 @@ export class ConnectionService implements OnDestroy {
               this.log.error('Could not retrieve backend machine configuration.');
               return of(false);
             }
-            WaferflowEditor
+
 
             const resourceLockName: string = getResourceLockName(resourceName); // PMx --> PMxRecipe
             const resource = resourceList.find(r => r.machineResourceName === resourceLockName);
@@ -442,7 +442,7 @@ export class ConnectionService implements OnDestroy {
         } else {
           const lockResourceBody = {
             sessionID: session.sessionID,
-            resourceNames: [`${resourceName}Recipe`],
+            resourceNames: [`${resourceName}`],
           };
           return this.http.post(
             `${this.backendUrl.value}/sessionmanager/v3/lockresource`,

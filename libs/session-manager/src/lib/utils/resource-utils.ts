@@ -38,7 +38,8 @@ export function filterResources(resources: Resource[]): MachineResource[] {
 }
 
 /** Get the name of the resource lock (e.g. "PMxRecipe") from the name (e.g. "PMx") */
-export const getResourceLockName = (resourceName: string) => `${resourceName}Recipe`;
+//Todo
+export const getResourceLockName = (resourceName: string) => `${resourceName}`;
 
 /** Determine whether the resource name is a process module and strip undefined from the type. */
 export const isProcessModule = (resourceName?: string): boolean => {

@@ -346,6 +346,85 @@
           "styleext": "scss"
         }
       }
+    },
+    "express-wafer-flow-editor": {
+      "projectType": "library",
+      "root": "libs/express-wafer-flow-editor",
+      "sourceRoot": "libs/express-wafer-flow-editor/src",
+      "prefix": "ewfe",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/express-wafer-flow-editor/tsconfig.lib.json",
+            "project": "libs/express-wafer-flow-editor/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/express-wafer-flow-editor/tsconfig.lib.json",
+              "libs/express-wafer-flow-editor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/express-wafer-flow-editor/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/express-wafer-flow-editor/jest.config.js",
+            "tsConfig": "libs/express-wafer-flow-editor/tsconfig.spec.json",
+            "setupFile": "libs/express-wafer-flow-editor/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "utility": {
+      "projectType": "library",
+      "root": "libs/utility",
+      "sourceRoot": "libs/utility/src",
+      "prefix": "lamresearch",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/utility/tsconfig.lib.json",
+            "project": "libs/utility/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/utility/tsconfig.lib.json",
+              "libs/utility/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/utility/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/utility/jest.config.js",
+            "tsConfig": "libs/utility/tsconfig.spec.json",
+            "setupFile": "libs/utility/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

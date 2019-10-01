@@ -1,32 +1,33 @@
-//todo
-// import { fakeAsync, tick } from '@angular/core/testing';
-// import { MatSnackBar } from '@angular/material/snack-bar';
 
-// import { SpyObject } from '../../../testing/spy-object.spec-util';
-// import { Duration, openSnackbar } from './snackbar';
+import { fakeAsync, tick } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-// describe('snackbar', () => {
-//   describe('openSnackbar', () => {
-//     let snackbar: jasmine.SpyObj<MatSnackBar>;
+import { SpyObject } from '@lamresearch/utility';
+import { Duration, openSnackbar } from './snackbar';
 
-//     beforeEach(() => {
-//       snackbar = SpyObject.create(MatSnackBar);
-//     });
+describe('snackbar', () => {
+  describe('openSnackbar', () => {
+    //todo:removed type
+    let snackbar: any;
 
-//     it('should handle the defaults', fakeAsync(() => {
-//       openSnackbar(snackbar, 'foo');
-//       tick();
+    beforeEach(() => {
+      snackbar = SpyObject.create(MatSnackBar);
+    });
 
-//       expect(snackbar.open).toHaveBeenCalledTimes(1);
-//       expect(snackbar.open).toHaveBeenCalledWith('foo', undefined, { duration: Duration.Medium });
-//     }));
+    it('should handle the defaults', fakeAsync(() => {
+      openSnackbar(snackbar, 'foo');
+      tick();
 
-//     it('should handle custom duration', fakeAsync(() => {
-//       openSnackbar(snackbar, 'bar', 56);
-//       tick();
+      expect(snackbar.open).toHaveBeenCalledTimes(1);
+      expect(snackbar.open).toHaveBeenCalledWith('foo', undefined, { duration: Duration.Medium });
+    }));
 
-//       expect(snackbar.open).toHaveBeenCalledTimes(1);
-//       expect(snackbar.open).toHaveBeenCalledWith('bar', undefined, { duration: 56 });
-//     }));
-//   });
-// });
+    it('should handle custom duration', fakeAsync(() => {
+      openSnackbar(snackbar, 'bar', 56);
+      tick();
+
+      expect(snackbar.open).toHaveBeenCalledTimes(1);
+      expect(snackbar.open).toHaveBeenCalledWith('bar', undefined, { duration: 56 });
+    }));
+  });
+});

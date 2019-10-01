@@ -13,14 +13,10 @@ import { StoreModule } from '@ngrx/store';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot([]
-    ),
-    // Must instrument after importing StoreModule
-    //StoreDevtoolsModule.instrument({ maxAge: MAX_STORE_STATES }),
     RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
     LamCommonEagerModule,
-    BrowserAnimationsModule
   ],
   providers: [
     {

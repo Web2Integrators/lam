@@ -12,6 +12,7 @@ import { finalize, tap } from 'rxjs/operators';
 //import { incrementPendingRequests, decrementPendingRequests } from './app-state';
 import { LogObserverDef, Environment } from '../../sharedArtifcats/environment-types';
 import { getAbsoluteUrl } from '../log/utils';
+import { incrementPendingRequests, decrementPendingRequests } from '../../sharedArtifcats/app-state';
 
 export const SLOW_REQUEST_TIME = 1000; // milliseconds
 
@@ -81,7 +82,7 @@ export class HttpProgressService implements HttpInterceptor {
 
     const store = this.injector.get(Store);
       //todo comment t
-    //let t: NodeJS.Timer;
+    let t: any;
 
     if (backgroundTaskUrls.has(req.url)) {
       backgroundRequest = true;
@@ -100,26 +101,26 @@ export class HttpProgressService implements HttpInterceptor {
     function addSlowRequest() {
       slowRequest = true;
       //todo
-     // store.dispatch(incrementPendingRequests());
+      store.dispatch(incrementPendingRequests());
     }
 
     return next.handle(req).pipe(
       tap(() => {
-        // initialize a timeout period when we initially send the request, but not for responses
-        // if (!t && !backgroundRequest) {
-        //   t = setTimeout(addSlowRequest, SLOW_REQUEST_TIME);
-        // }
+       // initialize a timeout period when we initially send the request, but not for responses
+        if (!t && !backgroundRequest) {
+          t = setTimeout(addSlowRequest, SLOW_REQUEST_TIME);
+        }
       }),
       //todo comment t
       finalize(() => {
         // clear the timeout, so a fast request will be stopped from incrementing the pending
         // request count
-        //clearTimeout(t);
+        clearTimeout(t);
         if (slowRequest) {
           // if the request was slow enough to have incremented the pending request count,
           // decrement it now
           //todo
-         // store.dispatch(decrementPendingRequests());
+          store.dispatch(decrementPendingRequests());
         }
       }),
     );

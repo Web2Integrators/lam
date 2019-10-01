@@ -15,11 +15,11 @@ export const routes: Routes = [
         m => m.SessionManagerModule
       )
   },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () =>
-  //     import('@lam/dashboard').then(
-  //       m => m.DashboardModule
-  //     )
-  // }
+  {
+    path: 'ewfe',
+    loadChildren: () =>
+      import('@lamresearch/express-wafer-flow-editor').then(
+        m => m.ExpressWaferFlowEditorModule
+      )
+  }
 ];

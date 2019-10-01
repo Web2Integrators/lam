@@ -15,6 +15,10 @@ import { RootComponent } from './componentContainers/root/root.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material';
 import { ModalModule } from '@lamresearch/lam-common-lazy';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers } from '../../sharedArtifcats/app-state';
+const MAX_STORE_STATES = 25;
 const eagerModules = [
   CommonModule,
   AppErrorHandlingModule,
@@ -24,9 +28,21 @@ const eagerModules = [
   ActionLoggingModule,
   HttpLoggingModule
 ]
+//todo:whywe need MatDialog here
 @NgModule({
   declarations: [RootComponent],
-  imports: [... eagerModules,RouterModule,MatDialogModule,ModalModule],//todo:whywe need MatDialog here
+  imports: [...eagerModules, RouterModule, MatDialogModule, ModalModule,
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: false, // TODO: state is not serializable
+        strictActionSerializability: false, // TODO: some actions are not serializable
+      },
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: MAX_STORE_STATES }),
+   // EffectsModule.forRoot([]),
+  ],
   exports : [... eagerModules,RootComponent]
 })
 export class LamCommonEagerModule {

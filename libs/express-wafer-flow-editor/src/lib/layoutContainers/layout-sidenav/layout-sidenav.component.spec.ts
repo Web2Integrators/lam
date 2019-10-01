@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing'
-import { RootComponent } from './root.component';
 
-describe('RootComponent', () => {
-  let component: RootComponent;
-  let fixture: ComponentFixture<RootComponent>;
+import { LayoutSidenavComponent } from './layout-sidenav.component';
+
+describe('LayoutSidenavComponent', () => {
+  let component: LayoutSidenavComponent;
+  let fixture: ComponentFixture<LayoutSidenavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RootComponent],
-      imports: [ RouterTestingModule ]
+      declarations: [ LayoutSidenavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RootComponent);
+    fixture = TestBed.createComponent(LayoutSidenavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

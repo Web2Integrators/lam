@@ -31,6 +31,12 @@
     },
     "lam-common-eager": {
       "tags": []
+    },
+    "express-wafer-flow-editor": {
+      "tags": []
+    },
+    "utility": {
+      "tags": []
     }
   }
 }
