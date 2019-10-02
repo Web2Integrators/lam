@@ -22,14 +22,14 @@ export class ConnectionWizardComponent implements OnDestroy {
   constructor(conn: ConnectionService, route: ActivatedRoute) {
     this.step = conn.wizardStep;
 
-    // Capture query params on page load - no need to watch them:
-    const address = route.snapshot.queryParams['address'];
-    const resource = route.snapshot.queryParams['resource'];
+    // // Capture query params on page load - no need to watch them:
+    // const address = route.snapshot.queryParams['address'];
+    // const resource = route.snapshot.queryParams['resource'];
 
-    conn
-      .initializeConnection(this.unsubscribe, address, resource)
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(val=>console.log(val));
+    // conn
+    //   .initializeConnection(this.unsubscribe, address, resource)
+    //   .pipe(takeUntil(this.unsubscribe))
+    //   .subscribe(val=>console.log(val));
   }
 
   ngOnDestroy() {

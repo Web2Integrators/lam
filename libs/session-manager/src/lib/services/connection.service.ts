@@ -3,21 +3,85 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { cloneDeep, isUndefined } from 'lodash';
-import {  BehaviorSubject,  Observable,  Subscription,  UnaryFunction,  empty,  interval,  of,  pipe,  combineLatest,  Subject,  from,} from 'rxjs';
-import {  catchError,  distinctUntilChanged,  filter,  map,  mapTo,  mergeMap,  switchMap,  take,  takeUntil,  tap,  timeout,  withLatestFrom,  endWith,  startWith,  shareReplay,} from 'rxjs/operators';
-import { MachineResource, Session, BackendConfigOptions, MachineConfiguration, HostImage, PMImage, Resource, LoginCredentials, ConfigurationResponse, HeartbeatResponse, WizardStep, InvalidState, ResetConnectionMode } from '../types/types';
-import { BackendVersionService,ModalService, BackendError, handleBackendError, extractErrorName, ConnectionErrorCode, truthy, UiMode, ElectronService, Environment } from '@lamresearch/lam-common-lazy';
+import {
+  BehaviorSubject,
+  Observable,
+  Subscription,
+  UnaryFunction,
+  empty,
+  interval,
+  of,
+  pipe,
+  combineLatest,
+  Subject,
+  from
+} from 'rxjs';
+import {
+  catchError,
+  distinctUntilChanged,
+  filter,
+  map,
+  mapTo,
+  mergeMap,
+  switchMap,
+  take,
+  takeUntil,
+  tap,
+  timeout,
+  withLatestFrom,
+  endWith,
+  startWith,
+  shareReplay
+} from 'rxjs/operators';
+import {
+  MachineResource,
+  Session,
+  BackendConfigOptions,
+  MachineConfiguration,
+  HostImage,
+  PMImage,
+  Resource,
+  LoginCredentials,
+  ConfigurationResponse,
+  HeartbeatResponse,
+  WizardStep,
+  InvalidState,
+  ResetConnectionMode
+} from '../types/types';
+import {
+  BackendVersionService,
+  ModalService,
+  BackendError,
+  handleBackendError,
+  extractErrorName,
+  ConnectionErrorCode,
+  truthy,
+  UiMode,
+  ElectronService,
+  Environment
+} from '@lamresearch/lam-common-lazy';
 // tslint:disable-next-line:nx-enforce-module-boundaries
-import { Logger, LogService,  HttpProgressService } from '@lamresearch/lam-common-eager';
-import { filterResources, extractBackendConfig, getResourceLockName } from '../utils/resource-utils';
+import {
+  Logger,
+  LogService,
+  HttpProgressService
+} from '@lamresearch/lam-common-eager';
+import {
+  filterResources,
+  extractBackendConfig,
+  getResourceLockName
+} from '../utils/resource-utils';
 
-
- interface ImageOptions {imageName: string; optionName: string; optionValue: string;}
+interface ImageOptions {
+  imageName: string;
+  optionName: string;
+  optionValue: string;
+}
 
 const arbitrationTimeout = 60 * 1000;
 const backendPort = '18072';
 const openSessionBody = {
-  clientname: 'Express Wafer Flow',
+  clientname: 'Express Wafer Flow'
   // worker: {
   //   type: 'ctu',
   //   window: 'hide',
@@ -31,7 +95,7 @@ const MINIMUM_CTU_VERSION = '0.0.0';
  * Service to manage the session, login, arbitration, etc.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ConnectionService implements OnDestroy {
   private readonly log: Logger;
@@ -50,7 +114,9 @@ export class ConnectionService implements OnDestroy {
   resourceName = new BehaviorSubject<string>('');
 
   /** The latest config object received from the backend or an interim state. */
-  backendConfigOptions = new BehaviorSubject<BackendConfigOptions | InvalidState>(undefined);
+  backendConfigOptions = new BehaviorSubject<
+    BackendConfigOptions | InvalidState
+  >(undefined);
 
   /** The URL for the 2300 backend HTTP API. */
   backendUrl = new BehaviorSubject<string | undefined>(undefined);
@@ -72,19 +138,19 @@ export class ConnectionService implements OnDestroy {
     private modal: ModalService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private electron: ElectronService,
+    private electron: ElectronService
   ) {
     this.log = logService.createLogger('ConnectionService');
 
     this.latestBackendConfig = this.backendConfigOptions.pipe(
       filter(result => result !== 'PENDING'),
       take(1),
-      map(result => result as BackendConfigOptions | undefined),
+      map(result => result as BackendConfigOptions | undefined)
     );
 
     const machineConfig = this.backendUrl.pipe(
       distinctUntilChanged(),
-      switchMap(url => (url ? this.getMachineConfig(url) : of(undefined))),
+      switchMap(url => (url ? this.getMachineConfig(url) : of(undefined)))
     );
     combineLatest(machineConfig, this.resourceName, extractBackendConfig)
       .pipe(takeUntil(this.unsubscribe))
@@ -93,7 +159,7 @@ export class ConnectionService implements OnDestroy {
     this.hasBackendConfig = this.backendConfigOptions.pipe(
       filter(result => result !== undefined && result !== 'PENDING'),
       mapTo(true),
-      shareReplay(1),
+      shareReplay(1)
     );
   }
 
@@ -117,41 +183,41 @@ export class ConnectionService implements OnDestroy {
    * @param address The optional address (may be set in a query param)
    * @param resource The optional resource identifier (may be set in a query param)
    */
-  initializeConnection(notifier: Observable<any>, address?: string, resource?: string) {
-    return from(this.electron.getEnvironment()).pipe(
-      map((electronEnv?: Environment) => !!electronEnv && electronEnv.uiMode === UiMode.Embedded),
-      tap((isEmbedded: boolean) => {
-        if (!isEmbedded) {
-          // If the address is given, attempt to connect automatically. Otherwise, start the wizard.
-          if (address) {
-            this.openSession(address);
-          } else {
-            this.nextWizardStep(WizardStep.Session);
-          }
-          // If the resource is given, attempt to lock it automatically after login.
-          if (resource) {
-            this.wizardStep
-              .pipe(
-                takeUntil(notifier),
-                filter(step => step === WizardStep.Arbitration),
-                take(1),
-                takeUntil(this.unsubscribe),
-              )
-              .subscribe(_ => this.getResourceLock(resource));
-          }
-        }
-      }),
-      switchMap((isEmbedded: boolean) =>
-        isEmbedded
-          ? of(true)
-          : this.wizardStep.pipe(
-              map(step => step === WizardStep.Complete),
-              distinctUntilChanged(),
-              takeUntil(notifier),
-            ),
-      ),
-    );
-  }
+  // initializeConnection(notifier: Observable<any>, address?: string, resource?: string) {
+  //   return from(this.electron.getEnvironment()).pipe(
+  //     map((electronEnv?: Environment) => !!electronEnv && electronEnv.uiMode === UiMode.Embedded),
+  //     tap((isEmbedded: boolean) => {
+  //       if (!isEmbedded) {
+  //         // If the address is given, attempt to connect automatically. Otherwise, start the wizard.
+  //         if (address) {
+  //           this.openSession(address);
+  //         } else {
+  //           this.nextWizardStep(WizardStep.Session);
+  //         }
+  //         // If the resource is given, attempt to lock it automatically after login.
+  //         if (resource) {
+  //           this.wizardStep
+  //             .pipe(
+  //               takeUntil(notifier),
+  //               filter(step => step === WizardStep.Arbitration),
+  //               take(1),
+  //               takeUntil(this.unsubscribe),
+  //             )
+  //             .subscribe(_ => this.getResourceLock(resource));
+  //         }
+  //       }
+  //     }),
+  //     switchMap((isEmbedded: boolean) =>
+  //       isEmbedded
+  //         ? of(true)
+  //         : this.wizardStep.pipe(
+  //             map(step => step === WizardStep.Complete),
+  //             distinctUntilChanged(),
+  //             takeUntil(notifier),
+  //           ),
+  //     ),
+  //   );
+  // }
 
   /**
    * Open the session with the server.
@@ -166,7 +232,10 @@ export class ConnectionService implements OnDestroy {
     }
     const nextBackendUrl = `${fullAddress}:${backendPort}`;
     this.http
-      .post<Session>(`${nextBackendUrl}/sessionmanager/v3/opensession`, openSessionBody)
+      .post<Session>(
+        `${nextBackendUrl}/sessionmanager/v3/opensession`,
+        openSessionBody
+      )
       .pipe(
         timeout(arbitrationTimeout),
         // map(session => ({
@@ -180,19 +249,22 @@ export class ConnectionService implements OnDestroy {
           return this.backendVersionService.getCTUVersion(nextBackendUrl).pipe(
             switchMap(version => {
               // We lose the patch version with parse float but we don't care about that..
-              if (!version || parseFloat(version) < parseFloat(MINIMUM_CTU_VERSION)) {
+              if (
+                !version ||
+                parseFloat(version) < parseFloat(MINIMUM_CTU_VERSION)
+              ) {
                 return this.modal
                   .message(
                     `The minimum backend version is ${MINIMUM_CTU_VERSION}.
                       You have version ${version} installed.
                       Please upgrade your 2300 installation.`,
                     'Invalid Backend Version',
-                    'Dismiss',
+                    'Dismiss'
                   )
                   .pipe(map(() => undefined));
               }
               return of(conn);
-            }),
+            })
           );
         }),
         catchError((err: HttpErrorResponse) => {
@@ -202,7 +274,7 @@ export class ConnectionService implements OnDestroy {
             const errorName: string = backendError.errorName;
             const errors: string[] = [
               ConnectionErrorCode.ctuWorkersUnavailable,
-              ConnectionErrorCode.unknown,
+              ConnectionErrorCode.unknown
             ];
             return errors.includes(errorName);
           };
@@ -214,7 +286,7 @@ export class ConnectionService implements OnDestroy {
                     `Number of sessions connected to ‘${address}’ is at limit.
                     Please try again later.`,
                     'Unable to Connect to Tool',
-                    'Dismiss',
+                    'Dismiss'
                   )
                   .pipe(mergeMap(_result => empty()));
               // In case of unknown http error when getting address
@@ -223,17 +295,18 @@ export class ConnectionService implements OnDestroy {
                   .message(
                     `No response from ${address}. Verify that ${address} is online`,
                     'Problem Connecting',
-                    'Dismiss',
+                    'Dismiss'
                   )
                   .pipe(mergeMap(_result => empty()));
             }
           };
 
-          return handleBackendError(this.store, err, { predicate, execute }).pipe(
-            endWith(undefined),
-          );
+          return handleBackendError(this.store, err, {
+            predicate,
+            execute
+          }).pipe(endWith(undefined));
         }),
-        takeUntil(this.unsubscribe),
+        takeUntil(this.unsubscribe)
       )
       .subscribe(conn => {
         this.processSession(conn ? conn : undefined, address);
@@ -249,7 +322,7 @@ export class ConnectionService implements OnDestroy {
   processSession(session: Session | undefined, address: string) {
     if (session) {
       this.session = { ...session, address };
-      this.updateQueryParams({ address });
+     // this.updateQueryParams({ address });
       this.getResourceList();
       this.sendHeartbeat(session.sessionID);
       this.nextWizardStep(WizardStep.Login);
@@ -265,7 +338,7 @@ export class ConnectionService implements OnDestroy {
     this.getResourceDetails()
       .pipe(
         takeUntil(this.unsubscribe),
-        tap(list =>console.log(list))
+        tap(list => console.log(list))
       )
       .subscribe(list => this.resourceList.next(list));
   }
@@ -277,33 +350,9 @@ export class ConnectionService implements OnDestroy {
     const arbitrationUrl = `${this.backendUrl.value}/sessionmanager/v3/arbitration`;
     const imageOptionsUrl = `${this.backendUrl.value}/image/v3/options`;
     HttpProgressService.registerBackgroundTaskUrlOnce(imageOptionsUrl);
-
-    return this.http.get<{ arbitration: Resource[] }>(arbitrationUrl).pipe(
-      map(({ arbitration: resources }) => filterResources(resources)),
-      // The http.get will only ever emit once, so switchMap, concatMap, and mergeMap are
-      // interchangeable here.
-      switchMap(resources => {
-        const reqOptions = resources.map(r => ({
-          optionName: 'ModelName',
-          imageName: r.pmImage,
-        }));
-        return this.http
-          .post<{ options: ImageOptions[] }>(imageOptionsUrl, {
-            options: reqOptions,
-          })
-          .pipe(
-            map(({ options }) => {
-              return resources.map(r => {
-                const pmOptions = options.find(o => o.imageName === r.pmImage);
-                if (pmOptions) {
-                  r.modelName = pmOptions.optionValue;
-                }
-                return r;
-              });
-            }),
-          );
-      }),
-    );
+    return this.http
+      .get<{ arbitration: Resource[] }>(arbitrationUrl)
+      .pipe(map(({ arbitration: resources }) => filterResources(resources)));
   }
 
   /**
@@ -317,7 +366,7 @@ export class ConnectionService implements OnDestroy {
       this.http
         .post(`${this.backendUrl.value}/sessionmanager/v3/login`, {
           ...loginInfo,
-          sessionID: this.session.sessionID,
+          sessionID: this.session.sessionID
         })
         .pipe(
           mapTo(true), // The backend returns an empty response, so on success, map to true.
@@ -335,11 +384,12 @@ export class ConnectionService implements OnDestroy {
             };
             return handleBackendError(this.store, err, { predicate, execute });
           }),
-          takeUntil(this.unsubscribe),
+          takeUntil(this.unsubscribe)
         )
         .subscribe(success => {
           if (success) {
-            this.nextWizardStep(WizardStep.Arbitration);
+            this.getResourceLock('WaferflowEditor');
+            //this.nextWizardStep(WizardStep.Arbitration);
           }
         });
     } else {
@@ -362,28 +412,27 @@ export class ConnectionService implements OnDestroy {
     if (this.session) {
       const session = this.session;
       combineLatest(
-        this.latestBackendConfig,
-        this.electron.isElectron() ? this.electron.getEnvironment() : of(undefined),
+        this.electron.isElectron()
+          ? this.electron.getEnvironment()
+          : of(undefined)
       )
         .pipe(
           withLatestFrom(this.resourceList),
-          switchMap(([[backendConfig, desktopEnv], resourceList]) => {
-            if (!backendConfig) {
-              this.log.error('Could not retrieve backend machine configuration.');
-              return of(false);
-            }
-
-
+          switchMap(([[desktopEnv], resourceList]) => {
             const resourceLockName: string = getResourceLockName(resourceName); // PMx --> PMxRecipe
-            const resource = resourceList.find(r => r.machineResourceName === resourceLockName);
-            if (!resource) {
-              // resource does not exist in list
-              this.log.error(`Resource lock name "${resourceLockName}" not found`);
-              return of(false);
-            }
+            const resource = resourceList.find(r => r.machineResourceName === resourceLockName );
+            // if (!resource) {
+            //   // resource does not exist in list
+            //   this.log.error(
+            //     `Resource lock name "${resourceLockName}" not found`
+            //   );
+            //   return of(false);
+            // }
 
-            const isEmbedded: boolean = desktopEnv ? desktopEnv.uiMode === UiMode.Embedded : false;
-            if (!resource.locked || !backendConfig.arbitrationEnabled || isEmbedded) {
+            const isEmbedded: boolean = desktopEnv
+              ? desktopEnv.uiMode === UiMode.Embedded
+              : false;
+            if (!resource.locked || isEmbedded) {
               // The resource is not locked, or we don't care about a previous lock
               return this.prepareResource(resourceName, session);
             }
@@ -397,22 +446,22 @@ export class ConnectionService implements OnDestroy {
             return this.modal
               .confirm(
                 'This resource is locked by another session. Override?',
-                'Arbitration Override',
+                'Arbitration Override'
               )
               .pipe(
                 // if user confirms, go through the normal lock process
                 switchMap(override =>
-                  override ? this.prepareResource(resourceName, session) : of(false),
-                ),
+                  override
+                    ? this.prepareResource(resourceName, session)
+                    : of(false)
+                )
               );
           }),
-          takeUntil(this.unsubscribe),
+          takeUntil(this.unsubscribe)
         )
         .subscribe(success => {
           if (success) {
-            this.resourceName.next(resourceName);
-            this.updateQueryParams({ resource: resourceName });
-            this.nextWizardStep(WizardStep.Complete);
+            this.router.navigate(['/ewfe']);
           } else {
             this.resetClientSession();
           }
@@ -427,10 +476,10 @@ export class ConnectionService implements OnDestroy {
    * By configuration, the resource locking part of the sequence may be skipped.
    */
   prepareResource(resourceName: string, session: Session): Observable<boolean> {
-    const focusBody = {
-      sessionID: session.sessionID,
-      resourceName,
-    };
+    // const focusBody = {
+    //   sessionID: session.sessionID,
+    //   resourceName
+    // };
     return this.latestBackendConfig.pipe(
       truthy(), // Do nothing if we couldn't get the backend config object.
       switchMap((backendConfig: BackendConfigOptions) => {
@@ -442,43 +491,35 @@ export class ConnectionService implements OnDestroy {
         } else {
           const lockResourceBody = {
             sessionID: session.sessionID,
-            resourceNames: [`${resourceName}`],
+            resourceNames: [`${resourceName}`]
           };
           return this.http.post(
             `${this.backendUrl.value}/sessionmanager/v3/lockresource`,
-            lockResourceBody,
+            lockResourceBody
           );
         }
       }),
       // 2) focus the process module
       // The http.posts will each only ever emit once, so switchMap, concatMap, and mergeMap are
       // interchangeable here.
-     // switchMap(_ => this.http.post(`${this.ctuUrl.value}/ui/v3/focus`, focusBody)),
-    //  this.setupBackendForFirstTimeUse(session),
+      // switchMap(_ => this.http.post(`${this.ctuUrl.value}/ui/v3/focus`, focusBody)),
+      //  this.setupBackendForFirstTimeUse(session),
       mapTo(true), // The backend returns an empty response, so on success, map to true.
       timeout(arbitrationTimeout),
       catchError((err: HttpErrorResponse) => {
         this.log.error('Error during resource lock', err);
+        this.modal
+        .message(
+          `Error during resource lock.Please try again later.` + err.message,
+          'Lock resource',
+          'Dismiss'
+        )
         return handleBackendError(this.store, err).pipe(endWith(false));
-      }),
+      })
     );
   }
 
-  setupBackendForFirstTimeUse(
-    session: Session,
-  ): UnaryFunction<Observable<unknown>, Observable<{} | unknown>> {
-    if (this.resourceName.value === '') {
-      const pagesBody = {
-        sessionID: session.sessionID,
-        superPage: 'RecipeEditor',
-        subPage: 'Recipe',
-      };
-      // change to the recipe editor page
-      return switchMap(_ => this.http.post<{}>(`${this.ctuUrl.value}/ui/v3/pages`, pagesBody));
-    } else {
-      return pipe();
-    }
-  }
+
 
   /**
    * Send a recurring heartbeat to the server. If the response is successful, update the list of
@@ -497,8 +538,10 @@ export class ConnectionService implements OnDestroy {
         // If we use switchMap here and the network takes longer than heartbeatTime to complete
         // HTTP requests, then no request will complete because each will be cancelled before
         // finishing. Thus we use mergeMap here to allow pending requests to play out.
-        mergeMap(_ => this.http.post<HeartbeatResponse>(heartBeatUrl, { sessionID })),
-        takeUntil(this.unsubscribe),
+        mergeMap(_ =>
+          this.http.post<HeartbeatResponse>(heartBeatUrl, { sessionID })
+        ),
+        takeUntil(this.unsubscribe)
       )
       .subscribe(
         response => {
@@ -506,9 +549,12 @@ export class ConnectionService implements OnDestroy {
           this.evaluateInactivity(response.remainingInactivityTime, sessionID);
         },
         err => {
-          this.log.error('Error on heartbeat response; session disconnected', err);
+          this.log.error(
+            'Error on heartbeat response; session disconnected',
+            err
+          );
           this.resetClientSession();
-        },
+        }
       );
   }
 
@@ -521,7 +567,9 @@ export class ConnectionService implements OnDestroy {
     const newResources = filterResources(arbitration);
     const resourceList = cloneDeep(this.resourceList.value).map(res => ({
       ...res,
-      ...newResources.find(n => n.machineResourceName === res.machineResourceName),
+      ...newResources.find(
+        n => n.machineResourceName === res.machineResourceName
+      )
     }));
     this.resourceList.next(resourceList);
   }
@@ -576,23 +624,31 @@ export class ConnectionService implements OnDestroy {
           // Only one event goes thru this pipeline, so switchMap, mergeMap, and concatMap are
           // equivalent.
           switchMap(_ => this.resetInactivity(sessionID)),
-          takeUntil(this.unsubscribe),
+          takeUntil(this.unsubscribe)
         )
         .subscribe(
           _ => {},
           err => {
-            this.log.error('Error on resetinactivity response; session disconnected', err);
+            this.log.error(
+              'Error on resetinactivity response; session disconnected',
+              err
+            );
             this.resetClientSession();
-          },
+          }
         );
     }
   }
 
-  resetInactivity(sessionID: string = this.session ? this.session.sessionID : ''): Observable<any> {
+  resetInactivity(
+    sessionID: string = this.session ? this.session.sessionID : ''
+  ): Observable<any> {
     if (sessionID) {
-      return this.http.post(`${this.backendUrl.value}/sessionmanager/v3/resetinactivity`, {
-        sessionID,
-      });
+      return this.http.post(
+        `${this.backendUrl.value}/sessionmanager/v3/resetinactivity`,
+        {
+          sessionID
+        }
+      );
     } else {
       // there is no session in devMode, so we don't need to send anything
       return of(undefined);
@@ -606,7 +662,7 @@ export class ConnectionService implements OnDestroy {
     if (this.session) {
       this.http
         .post(`${this.backendUrl.value}/sessionmanager/v3/closesession`, {
-          sessionID: this.session.sessionID,
+          sessionID: this.session.sessionID
         })
         .pipe(
           catchError(err => {
@@ -615,11 +671,14 @@ export class ConnectionService implements OnDestroy {
             if (errorName === ConnectionErrorCode.sessionIDNotFound) {
               this.log.info('closesession: Session not found', err);
             } else {
-              this.log.error('Unknown error occurred when closing a session', err);
+              this.log.error(
+                'Unknown error occurred when closing a session',
+                err
+              );
             }
             return handleBackendError(this.store, err);
           }),
-          takeUntil(this.unsubscribe),
+          takeUntil(this.unsubscribe)
         )
         .subscribe();
     }
@@ -631,8 +690,8 @@ export class ConnectionService implements OnDestroy {
       relativeTo: this.activatedRoute,
       queryParams: {
         ...this.activatedRoute.snapshot.queryParams,
-        ...newParams,
-      },
+        ...newParams
+      }
     });
   }
 
@@ -641,19 +700,23 @@ export class ConnectionService implements OnDestroy {
    * not succeed.
    * @param backendUrl The url for the 2300 backend.
    */
-  private getMachineConfig(backendUrl: string): Observable<MachineConfiguration | InvalidState> {
+  private getMachineConfig(
+    backendUrl: string
+  ): Observable<MachineConfiguration | InvalidState> {
     const url = `${backendUrl}/machine/v1/configuration`;
 
     HttpProgressService.registerBackgroundTaskUrlOnce(url);
     return this.http
-      .get<ConfigurationResponse>(url, {params: { configurationType: 'machine' }})
+      .get<ConfigurationResponse>(url, {
+        params: { configurationType: 'machine' }
+      })
       .pipe(
         map(response => response.machineConfiguration),
         startWith('PENDING' as const),
         catchError((err: HttpErrorResponse) => {
           this.log.error('Error while getting machine configuration ', err);
           return handleBackendError(this.store, err).pipe(endWith(undefined));
-        }),
+        })
       );
   }
 }

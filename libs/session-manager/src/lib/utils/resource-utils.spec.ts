@@ -104,7 +104,7 @@ export const filteredResources: MachineResource[] = [
   },
 ];
 
-describe('resource-utils', () => {
+xdescribe('resource-utils', () => {
   describe('getProcessModuleName', () => {
     it('should parse a recipe editor name', () => {
       expect(getProcessModuleName('PM3Recipe')).toEqual('PM3');
