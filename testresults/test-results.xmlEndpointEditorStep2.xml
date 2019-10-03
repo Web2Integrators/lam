@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="30" errors="0" failures="0" tests="30" time="0.106">
+ <testsuite name="Endpoint Editor - Step 2" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.106" errors="0" tests="30" skipped="0" disabled="30" failures="0">
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC36: Should load IB1 and IB2 values" time="0">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC37: Should load BF1 and BF2" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC38: Should not post error for equation &quot;IB1 + IB2&quot; on BF1" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC39: Should not post error for &quot;IB1 - IB2&quot; on BF1" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC40: Should not post error for &quot;IB1 * IB2&quot; on BF1" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC41: Should not post error for &quot;IB1**2&quot; on BF1" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC42: Should not post error for &quot;IB1/IB2&quot; on BF1" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC43: Should not post error for &quot;Slope(IB1)&quot; on BF1" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC44: Should not post error for &quot;Slope(IB1/IB2)&quot; on BF1" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC45: Should not post error for &quot;DSlope(IB1)&quot; on BF1" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC46: Should not post error for &quot;DSlope(IB1 + IB2)&quot; on BF1" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC47: Should not post error for &quot;DSlope(IB1 - IB2)&quot; on BF1" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC48: Should not post error for &quot;DSlope(IB2 - IB2)&quot; on BF1" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC49: Should post error if IB3 is entered on BF2" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC50: Should be able to enter &quot;LoPass1stOrder&quot; and High &quot;0.00001&quot; on BF1" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC51: Should be able to click &quot;Apply&quot;" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC52: Should validate Filter and Parameter on BF1" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC53: Should be able to scroll HighCutOff Freq to negative value &quot;-3&quot;" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC54: Should be able to click &quot;Apply&quot;" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC55: Should post error &quot;Must be a nonnegative number&quot;" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC56: Should post underline red error" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC57: Should be able to enter &quot;0.005&quot; on BF1 High CutOff Freq" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC58: Should be able to click &quot;Apply&quot;" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC59: Should not post any errors" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC60: Should be able to enter &quot;Band2ndOrder&quot; on BF1" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC61: Should be able to click &quot;Cancel&quot;" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC62: Should validate unchanged values of Filter and Parameter on BF1" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC63: Should be able to enter &quot;Band2ndOrder&quot; and High/Low &quot;0.00001&quot; on BF2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC64: Should be able to click &quot;Apply&quot;" time="0.006">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 2" name="EE-TC65: Should validate Filter and Parameter on BF2" time="0.004">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

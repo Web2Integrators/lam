@@ -15,11 +15,11 @@
       "name": "Launch Protractor",
       "type": "node",
       "request": "launch",
-      "cwd":"${workspaceRoot}/client",
-      "program": "${workspaceRoot}/client/node_modules/protractor/bin/protractor",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
       "stopOnEntry": false,
-      "args": ["${workspaceRoot}/client/protractor.conf.js", "--suite", "full"],
-      "preLaunchTask": null,
+      "args": ["${workspaceRoot}/protractor.conf.js", "--suite", "full"],
+      "preLaunchTask": null
     },
     {
       "type": "chrome",
@@ -30,45 +30,7 @@
       "sourceMaps": true
     },
     {
-      "type": "chrome",
-      "request": "launch",
-      "name": "Launch Chrome/PDE Devmode",
-      "url": "http://localhost:8080/devMode/PM3",
-      "webRoot": "${workspaceFolder}/client",
-      "sourceMaps": true
-    },
-    {
-      "name": "debug-jest-lib",
-       "type": "node",
-       "request": "launch",
-       "program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
-       "args": [
-         "test",
-         "session-manager",
-         "--codeCoverage=false",
-        "--testFile=${workspaceFolder}/libs/session-manager/src/lib/services/connection.service.spec.ts"
-       ],
-       "cwd": "${workspaceFolder}",
-       "console": "internalConsole"
-     },
-     {
-      "type": "node",
-      "name": "vscode-jest-tests",
-      "request": "launch",
-      "args": [
-        "test",
-        "--passWithNoTests",
-        "--no-code-coverage",
-        "--runInBand",
-        "--testFile=${workspaceFolder}/libs/session-manager/src/lib/services/connection.service.spec.ts"
-      ],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng"
-    },
-    {
-      "name": "Debug Jest Testszzz",
+      "name": "Debug Jest with vscode",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
@@ -82,8 +44,7 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "trace": "all"
-    },
-
+    }
   ],
   "inputs": [
     // these options come from the names of your libraries as enumerated in nx.json..i manually put them in the pick list
@@ -91,9 +52,7 @@
       "type": "pickString",
       "id": "libName",
       "description": "Which nx project to run jest tests to debug?",
-      "options": [
-        "session-manager"
-      ],
+      "options": ["session-manager"],
       "default": "session-manager"
     }
   ]

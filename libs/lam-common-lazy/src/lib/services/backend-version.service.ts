@@ -11,6 +11,7 @@ export interface ICTUVersionResponse {
     lamHydraService: string;
     processDevelopmentEnvironmentService: string;
     imageService: string;
+    lamWaferFlowService:string
   };
 }
 

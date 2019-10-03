@@ -1,0 +1,9 @@
+{
+  "validToolAddress": "localhost",
+  "validLogin": "system",
+  "validPassword": "system",
+  "resource": "PM3",
+  "recipeName": "__PDE_Season_Base",
+  "bypassLogin": true,
+  "baseHref": ""
+}

@@ -9,28 +9,22 @@ import { ConnectionService } from '../../services/connection.service';
 // tslint:disable-next-line:nx-enforce-module-boundaries
 import { SpyObject } from '@lamresearch/utility';
 
-xdescribe('ConnectionWizardComponent', () => {
+describe('ConnectionWizardComponent', () => {
   let cmp: ConnectionWizardComponent;
 
-  let activatedRoute: ActivatedRoute;
-  //todo:jasmine.SpyObj<ConnectionService> = > any
+ 
   let connSvc: any;
 
   beforeEach(() => {
-    activatedRoute = SpyObject.create(ActivatedRoute);
-    activatedRoute.snapshot = new ActivatedRouteSnapshot();
-    activatedRoute.snapshot.queryParams = {
-      address: 'add',
-      resource: 'r',
-    };
+   
 
     connSvc = SpyObject.create(ConnectionService);
-    connSvc.initializeConnection.and.returnValue(of(true));
+    connSvc.wizardStep = of('session');
 
     TestBed.configureTestingModule({
       providers: [
         ConnectionWizardComponent,
-        { provide: ActivatedRoute, useValue: activatedRoute },
+       
         { provide: ConnectionService, useValue: connSvc },
       ],
     });
@@ -41,6 +35,9 @@ xdescribe('ConnectionWizardComponent', () => {
 
   it('should be created', () => {
     expect(cmp).toBeTruthy();
-    expect(connSvc.initializeConnection).toHaveBeenCalledWith(jasmine.any(Observable), 'add', 'r');
+    cmp.step.subscribe(val => {
+      expect(val).toEqual('session');
+    }) 
+   // expect(connSvc.initializeConnection).toHaveBeenCalledWith(jasmine.any(Observable), 'add', 'r');
   });
 });

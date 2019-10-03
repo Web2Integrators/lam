@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="4" errors="0" failures="0" tests="4" time="0.012">
+ <testsuite name="Learnt Values" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.012" errors="0" tests="4" skipped="0" disabled="4" failures="0">
+  <testcase classname="Learnt Values" name="RE-TC44: Should select Detail Process &amp; System" time="0">
+   <skipped />
+  </testcase>
+  <testcase classname="Learnt Values" name="RE-TC45: Should hide subsystem and select only RF sybsystem" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Learnt Values" name="RE-TC46: Should learnt values not zero" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Learnt Values" name="RE-TC47: Should reset learnt values reset to zero" time="0.001">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

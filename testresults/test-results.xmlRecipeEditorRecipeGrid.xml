@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="14" errors="0" failures="0" tests="14" time="0.142">
+ <testsuite name="Recipe Editor-RecipeGrid" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.05" errors="0" tests="0" skipped="0" disabled="0" failures="0">
+ </testsuite>
+ <testsuite name="Recipe Editor-RecipeGrid.Recipe grid" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.048" errors="0" tests="1" skipped="0" disabled="1" failures="0">
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid" name="RE-TC66: Should allow appending a new step to a new recipe" time="0.003">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Editor-RecipeGrid.Recipe grid.New recipe (Setpoints)" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.018" errors="0" tests="4" skipped="0" disabled="4" failures="0">
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New recipe (Setpoints)" name="RE-TC67: Should be able to change process time setpoint inStep 1: &quot;Process Time (sec)&quot; to 5 sec" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New recipe (Setpoints)" name="RE-TC68: Should be able to change process time setpoint inStep 2: &quot;Process Time (sec)&quot; to 15 sec" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New recipe (Setpoints)" name="RE-TC69: Should be able to change pressure setpoint inStep 1: &quot;Pressure (mtorr)&quot; to 30" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New recipe (Setpoints)" name="RE-TC70: Should be able to change pressure time setpoint inStep 2: &quot;Pressure (mtorr)&quot; to 40" time="0.005">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.017" errors="0" tests="6" skipped="0" disabled="6" failures="0">
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" name="RE-TC71: Should be able to copy a step (1) and paste as a new step (2)" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" name="RE-TC72: Should validate each step process time and pressure values after pasting a step" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" name="RE-TC73: Should be able to copy a step (3) and replace a step (2)" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" name="RE-TC74: Should validate each step process time and pressure valuesafter replacing a step" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" name="RE-TC75: Should be able to delete a step (step 2) from the recipe" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.New Recipe (Steps)" name="RE-TC76: Should validate each step process time and pressure valuesafter deleting a step" time="0.005">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Editor-RecipeGrid.Recipe grid.Existing Recipe" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.009" errors="0" tests="3" skipped="0" disabled="3" failures="0">
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.Existing Recipe" name="RE-TC77: Should be able to copy-paste one step, change step description and delete" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.Existing Recipe" name="RE-TC78: Should be able to copy and replace step" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Editor-RecipeGrid.Recipe grid.Existing Recipe" name="RE-TC79: Should be able to delete first and last columns" time="0.003">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

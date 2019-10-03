@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="5" errors="0" failures="0" tests="5" time="0.01">
+ <testsuite name="Recipe Validation" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.01" errors="0" tests="5" skipped="0" disabled="5" failures="0">
+  <testcase classname="Recipe Validation" name="RE-TC80: Should be able to change Gas4 to trigger validation rule" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Validation" name="RE-TC81: Should be able to click on validate tab" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Validation" name="RE-TC82: Should expect Gas4 validation warning message triggered" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Validation" name="RE-TC83: Should go back to setpoint page" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Validation" name="RE-TC84: Should be able to change the setpoint to meet validation warning" time="0.001">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

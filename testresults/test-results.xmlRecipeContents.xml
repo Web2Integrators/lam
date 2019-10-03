@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="23" errors="0" failures="0" tests="23" time="0.231">
+ <testsuite name="Recipe Contents" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.082" errors="0" tests="0" skipped="0" disabled="0" failures="0">
+ </testsuite>
+ <testsuite name="Recipe Contents.Recipe Menu" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.01" errors="0" tests="2" skipped="0" disabled="2" failures="0">
+  <testcase classname="Recipe Contents.Recipe Menu" name="RE-TC6: Should allow selection of recipe and open recipe" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Menu" name="RE-TC7: Should verify opened recipe name" time="0.006">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Contents.Recipe Parameters" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.07" errors="0" tests="0" skipped="0" disabled="0" failures="0">
+ </testsuite>
+ <testsuite name="Recipe Contents.Recipe Parameters.Setpoints Page (Controllables)" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.027" errors="0" tests="5" skipped="0" disabled="5" failures="0">
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints Page (Controllables)" name="RE-TC8: Should be able to choose in a list of items: Change &quot;Step Type&quot; to &quot;Stab&quot;" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints Page (Controllables)" name="RE-TC9: Should be able to change a string parameter: Change &quot;Step Description&quot; to &quot;ME1b&quot;" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints Page (Controllables)" name="RE-TC10: Should be able to change an int parameter: Change &quot;Process Time (sec)&quot; to 35 sec" time="0.009">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints Page (Controllables)" name="RE-TC11: Should be able to change a controled parameter without triggering an alarm: Change &quot;Pressure&quot; to 40" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints Page (Controllables)" name="RE-TC12: Should trigger an alarm when a changed parameter value is out of range Change &quot;Pressure&quot; to 4000" time="0.001">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.021" errors="0" tests="8" skipped="0" disabled="8" failures="0">
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC13: Should select &quot;Process &amp; system&quot; in View Detail show more parameters (in gray)" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC14: Should be able to filter only the &quot;RF&quot; subsystem" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC15: Should be able to change int values in the selected subsystem &quot;Bias RF Hold Time&quot; to 2 sec" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC16: Should be able to change int values in the selected subsystem &quot;Bias RF Duty Cycle (%)&quot; to 55" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC17: Should be able to choose a value in a list in the selected subsystem: Set &quot;Bias RF Output Mode&quot; to &quot;Pulse&quot;" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC18: Should be able to select detail: &quot;Process&quot;" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC19: Should be able to change a value in another tab: &quot;TCU Ch1 Temperature&quot; to 20	" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Setpoints page (Filters)" name="RE-TC20: Should preserve the previous filters when changing tab" time="0.003">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Contents.Recipe Parameters.Changing Gas Values" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.016" errors="0" tests="6" skipped="0" disabled="6" failures="0">
+  <testcase classname="Recipe Contents.Recipe Parameters.Changing Gas Values" name="RE-TC21: Should select the &quot;Reactants&quot; &amp; &quot;Chuck&quot; Subsystems filter" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Changing Gas Values" name="RE-TC22: Should change &quot;Gas Injection Ratio&quot; to &quot;Edge&quot;	" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Changing Gas Values" name="RE-TC23: Should change &quot;HBr&quot; (Gas4) to 500" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Changing Gas Values" name="RE-TC24: Should change Step 4: ME2 Change &quot;HBr Manifold&quot; to Tuning" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Changing Gas Values" name="RE-TC25: Should change some int value: &quot;Mid Inner ESC Temp&quot; to 65	" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Changing Gas Values" name="RE-TC26: Should change &quot;TCU Channel&quot; to &quot;TCU_Ch1&quot;	" time="0.002">
+   <skipped />
+  </testcase>
+ </testsuite>
+ <testsuite name="Recipe Contents.Recipe Parameters.Tolerances Tab Selection" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.005" errors="0" tests="2" skipped="0" disabled="2" failures="0">
+  <testcase classname="Recipe Contents.Recipe Parameters.Tolerances Tab Selection" name="RE-TC27: Should show tolerances" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Recipe Contents.Recipe Parameters.Tolerances Tab Selection" name="RE-TC28: Should hide Tolerances" time="0.002">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

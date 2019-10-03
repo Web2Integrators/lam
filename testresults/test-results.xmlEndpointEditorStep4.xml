@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="1" errors="0" failures="0" tests="1" time="0.005">
+ <testsuite name="Endpoint Editor - Step 4" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.005" errors="0" tests="1" skipped="0" disabled="1" failures="0">
+  <testcase classname="Endpoint Editor - Step 4" name="EE-TC36: Should load IB1 and IB2 values" time="0.002">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

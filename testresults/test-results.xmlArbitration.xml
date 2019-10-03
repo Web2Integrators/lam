@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="4" time="136.004">
+ <testsuite name="Arbitration" timestamp="2019-10-02T21:26:31" hostname="localhost" time="68.004" errors="0" tests="0" skipped="0" disabled="0" failures="0">
+ </testsuite>
+ <testsuite name="Arbitration.Session" timestamp="2019-10-02T21:26:31" hostname="localhost" time="4.542" errors="0" tests="2" skipped="0" disabled="0" failures="0">
+  <testcase classname="Arbitration.Session" name="RE-TC1: Should give a warning if trying to connect to invalid tool address" time="3.368" />
+  <testcase classname="Arbitration.Session" name="RE-TC2: Should move on to the next screen if tool address is valid" time="1.154" />
+ </testsuite>
+ <testsuite name="Arbitration.Login" timestamp="2019-10-02T21:26:35" hostname="localhost" time="63.458" errors="0" tests="2" skipped="0" disabled="0" failures="1">
+  <testcase classname="Arbitration.Login" name="RE-TC3: Should give a warning if trying to use an invalid login" time="3.447" />
+  <testcase classname="Arbitration.Login" name="RE-TC4: Should move on to the next screen if login is valid" time="60.003">
+   <failure type="exception" message="Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL."><![CDATA[Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
+    at Timeout._onTimeout (C:\projects\LAM\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4281:23)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)]]>
+   </failure>
+  </testcase>
+ </testsuite>
+</testsuites>

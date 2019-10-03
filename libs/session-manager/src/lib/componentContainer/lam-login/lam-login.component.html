@@ -16,7 +16,9 @@
         />
       </mat-form-field>
     </form>
-    <p e2e="warning" *ngIf="loginFailure | async" class="warn-text">Invalid username or password</p>
+    <p e2e="warning" *ngIf="loginFailure | async" class="warn-text">
+      Invalid username or password
+    </p>
     <button
       e2e="loginBtn"
       (click)="login()"

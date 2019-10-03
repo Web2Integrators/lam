@@ -15,11 +15,11 @@ import { WizardStep } from '../../types/types';
   styleUrls: ['./connection-wizard.component.scss'],
 })
 export class ConnectionWizardComponent implements OnDestroy {
-  private unsubscribe = new Subject<void>();
+ 
   step: Observable<WizardStep>;
   wizardStep = WizardStep;
 
-  constructor(conn: ConnectionService, route: ActivatedRoute) {
+  constructor(conn: ConnectionService) {
     this.step = conn.wizardStep;
 
     // // Capture query params on page load - no need to watch them:
@@ -33,7 +33,6 @@ export class ConnectionWizardComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+   
   }
 }

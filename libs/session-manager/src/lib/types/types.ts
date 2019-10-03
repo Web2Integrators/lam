@@ -43,14 +43,14 @@ export interface BackendConfigOptions {
 }
 
 export interface Session {
-  sessionID: string;
-  toolID: string;
-  hostname: string;
+  sessionID?: string;
+  toolID?: string;
+  hostname?: string;
   address?: string;
-  sessionName: string;
-  workerPort: number;
-  sessionInactivityTime: number;
-  sessionHeartbeatInterval: number;
+  sessionName?: string;
+  workerPort?: number;
+  sessionInactivityTime?: number;
+  sessionHeartbeatInterval?: number;
 }
 
 export interface PdeConfig {

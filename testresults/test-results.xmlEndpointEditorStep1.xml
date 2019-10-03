@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="34" errors="0" failures="1" tests="35" time="22.288">
+ <testsuite name="Endpoint Editor - Step 1" timestamp="2019-10-02T20:43:38" hostname="localhost" time="12.471" errors="0" tests="0" skipped="0" disabled="0" failures="0">
+ </testsuite>
+ <testsuite name="Endpoint Editor - Step 1.Integration Bands (IBs)" timestamp="2019-10-02T20:43:40" hostname="localhost" time="9.817" errors="0" tests="35" skipped="0" disabled="34" failures="1">
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC1: Should open Endpoint Editor (New Recipe)" time="9.54">
+   <failure type="exception" message="Failed: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=77.0.3865.90)
+  (Driver info: chromedriver=77.0.3865.10 (bc3579f611bbc73331171afe020ec7a45e6ccc55-refs/branch-heads/3865@{#93}),platform=Windows NT 10.0.17134 x86_64)"><![CDATA[NoSuchWindowError: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=77.0.3865.90)
+  (Driver info: chromedriver=77.0.3865.10 (bc3579f611bbc73331171afe020ec7a45e6ccc55-refs/branch-heads/3865@{#93}),platform=Windows NT 10.0.17134 x86_64)
+    at Object.checkLegacyResponse (C:\projects\LAM\node_modules\selenium-webdriver\lib\error.js:546:15)
+    at parseHttpResponse (C:\projects\LAM\node_modules\selenium-webdriver\lib\http.js:509:13)
+    at doSend.then.response (C:\projects\LAM\node_modules\selenium-webdriver\lib\http.js:441:30)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\projects\LAM\apps\e2e\endpoint-editor\s1-integration-bands.e2e-spec.ts:46:9)
+    at addSpecsToSuite (C:\projects\LAM\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1107:25)
+    at Env.describe (C:\projects\LAM\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1074:7)
+    at Env.<anonymous> (C:\projects\LAM\node_modules\jasmine-fail-fast\dist\jasmine-fail-fast.js:57:26)
+    at Env.wrapper [as describe] (C:\projects\LAM\node_modules\jasmine-fail-fast\node_modules\lodash\index.js:3592:19)
+    at describe (C:\projects\LAM\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4399:18)
+    at Suite.<anonymous> (C:\projects\LAM\apps\e2e\endpoint-editor\s1-integration-bands.e2e-spec.ts:45:5)
+    at addSpecsToSuite (C:\projects\LAM\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1107:25)
+    at Env.describe (C:\projects\LAM\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1074:7)]]>
+   </failure>
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC2: Should be able to select Integration Bands step" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC3: Should show &quot;Create&quot; icon on Integration Bands step" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC4: Should show &quot;Warning&quot; icon on Algorithms step" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC5: Should be able to enter value &quot;-5&quot;  on IB2 wavelength" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC6: Should be able to go to Basis functions (BFs) page" time="0.009">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC7: Should be able to enter &quot;IB2&quot; on BF2 row" time="0.016">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC8: Should show &quot;Warning&quot; icon on IB step" time="0.011">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC9: Should show red line &quot;undefined IB&quot; on BF page" time="0.01">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC10: Should show &quot;Warning&quot; icon on BF step" time="0.009">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC11: Should show red line &quot;The minimum legal value is undefined on IB page" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC12: Should be able to enter value &quot;2000&quot;  on IB2 wavelength" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC13: Should show &quot;undefined IB&quot; on BF page" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC14: Should show &quot;The maximum legal value is 1000&quot; on IB page" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC15: Should be able to enter value &quot;500&quot;  on IB2 wavelength" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC16: Should show &quot;Done&quot; icon on IB step" time="0.009">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC17: Should show &quot;Done&quot; icon on BF step" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC18: Should be able to enter value &quot;-5&quot;  on IB2 bandwidth" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC19: Should show &quot;The minimum legal value is 0&quot; on IB2 bandwidth" time="0.006">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC20: Should show &quot;Should be able to enter value &quot;10&quot; on IB2 bandwidth" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC21: Should be able to select &quot;OESMaster&quot; Signal Channel on IB1" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC22: Should be able to select &quot;FIR&quot; Filter Type on IB1" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC23: Should be able to enter &quot;-5&quot; in No. of Samples" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC24: Should be able click Apply button" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC25: Should post error if negative value is entered" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC26: Should be able to enter &quot;5&quot; in No. of Samples" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC27: Should NOT post error if positive value is entered in Samples" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC28: Should verify if IB1 Filter and Parameter is applied correctly" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC29: Should be able to select &quot;LoPass2ndOrder&quot; Type on IB2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC30: Should be able to enter &quot;0.005&quot; High CutOff Freq" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC31: Should verify if IB2 Filter and Parameter is applied correctly" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC32: Should post error if negative value during scroll down" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC33: Should NOT post error if negative value during scroll up" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC34: Should be able to click &quot;cancel&quot; button" time="0.006">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 1.Integration Bands (IBs)" name="EE-TC35: Should not change previously applied High CutOff Freq value" time="0.003">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>

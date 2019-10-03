@@ -75,32 +75,25 @@ export const rawResources: Resource[] = [
     machineResourceName: 'PM3Recipe',
     state: 'Online',
   },
+  {
+    displayName: 'wfe',
+    lockStatus: 'Locked',
+    lockType: 'Logical',
+    lockInformation: 'Session1',
+    overrideOption: 'Enabled',
+    machineResourceName: 'WaferflowEditor',
+    state: 'Online',
+  },
 ];
 
 export const filteredResources: MachineResource[] = [
   {
-    displayName: 'PM1',
-    machineResourceName: 'PM1Recipe',
+    displayName: 'WaferflowEditor',
+    machineResourceName: 'WaferflowEditor',
     locked: true,
     lockInformation: 'Session1',
     offline: false,
-    pmImage: 'PM1Image',
-  },
-  {
-    displayName: 'PM2',
-    machineResourceName: 'PM2Recipe',
-    locked: false,
-    lockInformation: '',
-    offline: false,
-    pmImage: 'PM2Image',
-  },
-  {
-    displayName: 'PM3',
-    machineResourceName: 'PM3Recipe',
-    locked: true,
-    lockInformation: 'Session1',
-    offline: true,
-    pmImage: 'PM3Image',
+    pmImage: 'WaferflowEditorImage',
   },
 ];
 

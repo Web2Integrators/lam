@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="42" errors="0" failures="0" tests="42" time="0.207">
+ <testsuite name="Endpoint Editor - Step 3" timestamp="2019-10-02T20:43:51" hostname="localhost" time="0.207" errors="0" tests="42" skipped="0" disabled="42" failures="0">
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC66: Should load IB1 and IB2 values. BF1 and BF2 values" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC67: Should be able to select Algorithms page" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC68: Should show &quot;Done&quot; icon on IB and BF step" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC69: Should show &quot;Create&quot; icon on Algorithms step" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC70: Should be able to select Stage Execution mode &quot;Sequentially&quot;" time="0.001">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC71: Should validate &quot;Stage&quot; rows on first column for &quot;Sequentially&quot; mode" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC72: Should be able to select Stage Execution mode &quot;Parallel OR&quot;" time="0.006">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC73: Should validate &quot;EP&quot; rows on first column for &quot;Parallel OR&quot; mode" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC74: Should be able to select Stage Execution mode &quot;Parallel AND&quot;" time="0.008">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC75: Should validate &quot;EP&quot; rows on first column for &quot;Parallel AND&quot; mode" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC76: Should be able to change Stage 1 Basic Function to &quot;BF1&quot;" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC77: Should be able to change Stage 2 Basic Function to &quot;BF2&quot;" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC78: Should show underline error &quot;A value is required&quot; on Algorithm col" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC79: Should show error &quot;Please chose an algorithm&quot; on Algorithm parameter" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC80: Should be able to change Stage 1 Algorithm to &quot;PercentSlope&quot;" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC81: Should be able to click &quot;Apply&quot; on Alrogithm Stage 1" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC82: Should validate Algorithm &quot;PercentSlope&quot; is selected  on Stage 1" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC83: Should validate default Algorithm Parameters values on Stage 1" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC84: Should be able to change Stage 2 Algorithm to &quot;ValueChange&quot;" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC85: Should be able to click &quot;Apply&quot; on Alrogithm Stage 2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC86: Should validate Algorithm &quot;ValueChange&quot; is selected on Stage 2 " time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC87: Should validate default Algorithm Parameters values on Stage 2" time="0.006">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC88: Should be able to add Comment &quot;Test&quot; on Stage 2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC89: Should be able to click &quot;Apply&quot; on Alrogithm Stage 2" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC90: Should validate Algorithm comment on Stage 2" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC91: Should be able to change &quot;Normalization Time&quot; to &quot;-1&quot; on Stage 2" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC92: Should show error &quot;Must be greater than 0&quot;" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC93: Should be able to change &quot;Normalization Time&quot; to &quot;0&quot; on Stage 2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC94: Should show error &quot;Must be greater than 0&quot;" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC95: Should be able to click &quot;Apply&quot; on Alrogithm Stage 2" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC96: Should validate Algorithm comment on Stage 2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC97: Should be able to change &quot;Normalization Time&quot; to &quot;2&quot; on Stage 2" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC98: Should not show error &quot;Must be greater than 0&quot;" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC99: Should be able to click &quot;Apply&quot; on Alrogithm Stage 2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC100: Should validate modified &quot;Normalization Time&quot; value  on Stage 2" time="0.002">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC101: Should be able to change &quot;Normalization Time&quot; to &quot;-6&quot; on Stage 2" time="0.004">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC102: Should show error &quot;Must be greater than 0&quot;" time="0.005">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC103: Should be able to click &quot;Cancel&quot;" time="0.007">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC104: Should validate unchanged Algorithm Parameters values on Stage 2" time="0.012">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC105: Should validate unchanged Algorithm Parameters in &quot;Parallel OR&quot; model" time="0.003">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC106: Should validate unchanged Algorithm Parameters in &quot;Parallel AND&quot; model" time="0.008">
+   <skipped />
+  </testcase>
+  <testcase classname="Endpoint Editor - Step 3" name="EE-TC107: Should validate unchanged Algorithm Parameters in &quot;Sequentially&quot; model" time="0.003">
+   <skipped />
+  </testcase>
+ </testsuite>
+</testsuites>
