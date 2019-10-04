@@ -25,7 +25,10 @@
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "compodoc": "npx compodoc -p apps/expresswaferflow/tsconfig.app.json",
+    "build:doc": "npx compodoc -p libs/lam-common-eager/tsconfig.lib.json -d dist/apps/documentation/compodoc -s && npx compodoc -p libs/lam-common-lazy/tsconfig.lib.json -d dist/apps/documentation/compodoc -s",
+    "runtest" : "ng test lam-common-eager --codeCoverage && ng test lam-common-lazy --codeCoverage && ng test session-manager --codeCoverage"
   },
   "private": true,
   "dependencies": {

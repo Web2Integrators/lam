@@ -8,22 +8,17 @@
     "nx.json": "*"
   },
   "projects": {
-    "expresswaferflow-e2e": {
+  
+    "wfe-e2e": {
       "tags": []
     },
     "expresswaferflow": {
-      "tags": []
-    },
-    "shared": {
       "tags": []
     },
     "landing": {
       "tags": []
     },
     "session-manager": {
-      "tags": []
-    },
-    "lam-common": {
       "tags": []
     },
     "lam-common-lazy": {

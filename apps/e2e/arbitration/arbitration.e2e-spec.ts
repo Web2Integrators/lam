@@ -42,13 +42,14 @@ describe('Arbitration', () => {
       await page.warningMessage.isPresent();
     });
 
-    it('RE-TC4: Should move on to the next screen if login is valid', async () => {
+    it('RE-TC4: Should redirect to ewfeditor if login is valid', async () => {
       await page.login.clear();
       await page.password.clear();
       await page.login.sendKeys(browser.params.validLogin);
       await page.password.sendKeys(browser.params.validPassword);
       await browser.wait(ExpectedConditions.elementToBeClickable(page.loginBtn));
       await page.loginBtn.click();
+
       await page.dialogOkBtn.isPresent();
       await waitForItemToShowAndClick(page.dialogOkBtn);
       const val =  await browser.wait(ExpectedConditions.presenceOf(page.wfeEditor));
