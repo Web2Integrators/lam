@@ -5,8 +5,4 @@ export * from './lib/sharedArtifcats/shared'
 export * from './lib/sharedArtifcats/routes'
 export * from './lib/sharedArtifcats/environment-types'
 export * from './lib/modules/http-progress/http-progress.service'
-export * from './lib/sharedArtifcats/app-state'
-export
-*
- from
-'./lib/modules/lam-common-eager/store/reducers/index'
+export *  from './lib/modules/lam-common-eager/store/reducers/index'

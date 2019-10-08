@@ -12,7 +12,10 @@ import {
 import { LamSessionComponent } from './componentContainer/lam-session/lam-session.component';
 import { LamLoginComponent } from './componentContainer/lam-login/lam-login.component';
 import { LamResourceLockComponent } from './componentContainer/lam-resource-lock/lam-resource-lock.component';
+// tslint:disable-next-line:nx-enforce-module-boundaries
 import { ModalModule } from '@lamresearch/lam-common-lazy';
+import { StoreModule } from '@ngrx/store';
+import * as fromSession from './store/reducers';
 
 @NgModule({
   imports: [
@@ -23,6 +26,7 @@ import { ModalModule } from '@lamresearch/lam-common-lazy';
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
+    StoreModule.forFeature(fromSession.sessionFeatureKey, fromSession.reducers),
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: ConnectionWizardComponent }
     ])

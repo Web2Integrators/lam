@@ -12,9 +12,9 @@ import { SpyObject, logSpy } from '@lamresearch/utility';
 // tslint:disable-next-line:nx-enforce-module-boundaries
 import { ModalService, ConnectionErrorCode, ICTUVersionResponse } from '@lamresearch/lam-common-lazy';
 // tslint:disable-next-line:nx-enforce-module-boundaries
-import { reducers, LogEntries } from '@lamresearch/lam-common-eager';
+import {  LogEntries } from '@lamresearch/lam-common-eager';
 import { rawResources, filteredResources } from '../utils/resource-utils.spec';
-
+import * as fromSession from '../store/reducers';
 function conjurePdeResource(
   machineResourceName: string,
   displayName: string,
@@ -62,15 +62,15 @@ describe('ConnectionService', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        StoreModule.forRoot(reducers, {
-          runtimeChecks: {
-            strictStateImmutability: true,
-            strictActionImmutability: true,
-            strictStateSerializability: false,
-            strictActionSerializability: true,
-          },
-        }),
-       // StoreModule.forFeature('pde', updatePdeState, { initialState: startPdeState }),
+        // StoreModule.forFeature(reducers, {
+        //   runtimeChecks: {
+        //     strictStateImmutability: true,
+        //     strictActionImmutability: true,
+        //     strictStateSerializability: false,
+        //     strictActionSerializability: true,
+        //   },
+        // }),
+        StoreModule.forFeature(fromSession.sessionFeatureKey, fromSession.reducers),
       ],
     });
 
@@ -177,7 +177,7 @@ describe('ConnectionService', () => {
       };
       req.error(error as any);
 
-     
+
 
       httpMock.verify();
 
@@ -224,7 +224,7 @@ describe('ConnectionService', () => {
     const arbitrationResponse = { arbitration: rawResources };
     const result = [
       { ...filteredResources[0] }
-    
+
     ];
 
     it('should process the resource details', done => {
@@ -239,7 +239,7 @@ describe('ConnectionService', () => {
       expect(arbitrationReq.request.method).toEqual('GET');
       arbitrationReq.flush(arbitrationResponse);
 
-      
+
 
       const url = `${connSvc.backendUrl.value}/machine/v1/configuration`;
       httpMock.expectOne(request => request.url === url);
@@ -346,7 +346,7 @@ describe('ConnectionService', () => {
 
     let session: Session;
 
-   
+
 
     beforeEach(() => {
       resourceName = 'PM123';
@@ -466,7 +466,7 @@ describe('ConnectionService', () => {
       connSvc.getResourceLock(resourceName);
 
      // expect(logSpy.error).not.toHaveBeenCalled();
-     
+
       expect(connSvc.prepareResource).toHaveBeenCalledWith('PM123', {});
       expect(modal.confirm).not.toHaveBeenCalled();
       expect(connSvc.resourceName.value).toBe('');
@@ -485,7 +485,7 @@ describe('ConnectionService', () => {
       connSvc.getResourceLock(resourceName);
 
      // expect(logSpy.error).not.toHaveBeenCalled();
-      
+
       expect(connSvc.prepareResource).toHaveBeenCalledWith('PM123', {});
       expect(modal.confirm).not.toHaveBeenCalled();
       expect(connSvc.resourceName.value).toBe('');
@@ -543,7 +543,7 @@ describe('ConnectionService', () => {
       connSvc.getResourceLock(resourceName);
 
       //expect(logSpy.error).not.toHaveBeenCalled();
-      
+
       expect(connSvc.prepareResource).toHaveBeenCalledWith('PM123', {});
       expect(modal.confirm).toHaveBeenCalled();
      // expect(connSvc.resourceName.value).toBe('PM123');
@@ -590,7 +590,7 @@ describe('ConnectionService', () => {
 
       httpMock.expectNone(`${connSvc.backendUrl.value}/sessionmanager/v3/lockresource`);
 
-     
+
 
       const url = `${connSvc.backendUrl.value}/machine/v1/configuration`;
       httpMock.expectOne(request => request.url === url);
@@ -642,7 +642,7 @@ describe('ConnectionService', () => {
         expect(lockReq.request.body).toEqual(lockResourceBody);
         lockReq.flush({});
 
-       
+
 
         httpMock.verify();
         expect(store.dispatch).not.toHaveBeenCalled();
@@ -736,7 +736,7 @@ describe('ConnectionService', () => {
     }));
   });
 
- 
+
 
   describe('resetClientSession', () => {
     beforeEach(() => {
@@ -929,7 +929,7 @@ describe('ConnectionService', () => {
     });
   });
 
- 
+
 });
 
 

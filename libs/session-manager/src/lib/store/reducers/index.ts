@@ -4,7 +4,9 @@ import {
   Action,
   combineReducers,
 } from '@ngrx/store';
-//import * as fromRoot from '@example-app/reducers';
+
+// tslint:disable-next-line:nx-enforce-module-boundaries
+import {AppState} from '@lamresearch/lam-common-eager'
 import * as  fromSession from './session.reducer'
 
 
@@ -12,10 +14,9 @@ export const sessionFeatureKey = 'session';
 
 export interface SessionState {
   [fromSession.sessionBasicKey]: fromSession.State;
-
 }
 
-export interface State  {
+export interface State extends AppState {
   [sessionFeatureKey]: SessionState;
 }
 

@@ -18,6 +18,8 @@ import { ModalModule } from '@lamresearch/lam-common-lazy';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from '../../sharedArtifcats/app-state';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
+import { ROOT_REDUCERS } from './store/reducers';
 const MAX_STORE_STATES = 25;
 const eagerModules = [
   CommonModule,
@@ -32,13 +34,16 @@ const eagerModules = [
 @NgModule({
   declarations: [RootComponent],
   imports: [...eagerModules, RouterModule, MatDialogModule, ModalModule,
-    StoreModule.forRoot(reducers, {
+    StoreModule.forRoot(ROOT_REDUCERS, {
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
         strictStateSerializability: false, // TODO: state is not serializable
         strictActionSerializability: false, // TODO: some actions are not serializable
       },
+    }),
+    StoreRouterConnectingModule.forRoot({
+      routerState: RouterState.Minimal,
     }),
     StoreDevtoolsModule.instrument({ maxAge: MAX_STORE_STATES }),
    // EffectsModule.forRoot([]),

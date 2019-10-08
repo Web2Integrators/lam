@@ -1,6 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import {
@@ -67,6 +66,10 @@ import {
   getResourceLockName
 } from '../utils/resource-utils';
 
+import * as fromSession from '../store/reducers';
+import { Router } from '@angular/router';
+import { SessionActions } from '../store/actions';
+
 const arbitrationTimeout = 60 * 1000;
 const backendPort = '18072';
 const openSessionBody = {
@@ -110,9 +113,8 @@ export class ConnectionService implements OnDestroy {
     logService: LogService,
     private backendVersionService: BackendVersionService,
     //tood:we need session store
-    private store: Store<any>,
+    private store: Store<fromSession.State>,
     private modal: ModalService,
-    private activatedRoute: ActivatedRoute,
     private router: Router,
     private electron: ElectronService
   ) {
@@ -248,6 +250,7 @@ export class ConnectionService implements OnDestroy {
    */
   processSession(session: Session | undefined, address: string) {
     if (session) {
+      this.store.dispatch(SessionActions.sessionCreate({ session }));
       this.session = { ...session, address };
       this.getResourceList();
       this.sendHeartbeat(session.sessionID);
