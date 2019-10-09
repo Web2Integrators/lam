@@ -87,7 +87,10 @@
               "apps/expresswaferflow/tsconfig.app.json",
               "apps/expresswaferflow/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/expresswaferflow/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/expresswaferflow/**"
+            ]
           }
         },
         "test": {
@@ -121,13 +124,17 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/expresswaferflow-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/expresswaferflow-e2e/**"]
+            "tsConfig": [
+              "apps/expresswaferflow-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/expresswaferflow-e2e/**"
+            ]
           }
         }
       }
     },
-
     "landing": {
       "projectType": "library",
       "root": "libs/landing",
@@ -148,7 +155,10 @@
               "libs/landing/tsconfig.lib.json",
               "libs/landing/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/landing/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/landing/**"
+            ]
           }
         },
         "test": {
@@ -182,7 +192,10 @@
               "libs/session-manager/tsconfig.lib.json",
               "libs/session-manager/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/session-manager/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/session-manager/**"
+            ]
           }
         },
         "test": {
@@ -220,7 +233,10 @@
               "libs/lam-common-lazy/tsconfig.lib.json",
               "libs/lam-common-lazy/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/lam-common-lazy/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/lam-common-lazy/**"
+            ]
           }
         },
         "test": {
@@ -258,7 +274,10 @@
               "libs/lam-common-eager/tsconfig.lib.json",
               "libs/lam-common-eager/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/lam-common-eager/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/lam-common-eager/**"
+            ]
           }
         },
         "test": {
@@ -337,7 +356,10 @@
               "libs/utility/tsconfig.lib.json",
               "libs/utility/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/utility/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/utility/**"
+            ]
           }
         },
         "test": {
@@ -357,7 +379,7 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@ngrx/schematics"
   },
   "schematics": {
     "@nrwl/angular:application": {

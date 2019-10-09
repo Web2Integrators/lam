@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from '../../sharedArtifcats/app-state';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { ROOT_REDUCERS } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
 const MAX_STORE_STATES = 25;
 const eagerModules = [
   CommonModule,
@@ -46,7 +47,7 @@ const eagerModules = [
       routerState: RouterState.Minimal,
     }),
     StoreDevtoolsModule.instrument({ maxAge: MAX_STORE_STATES }),
-   // EffectsModule.forRoot([]),
+    EffectsModule.forRoot([]),
   ],
   exports : [... eagerModules,RootComponent]
 })

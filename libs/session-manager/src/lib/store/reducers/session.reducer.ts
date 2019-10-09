@@ -14,7 +14,15 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(SessionActions.sessionCreate, (state, { session }) => ({ ...state, session })),
+  on(SessionActions.sessionCreate, (state, { session }) => (
+
+    {
+
+    ...state, session
+  })),
 );
 
-export const getSession = (state: State) => state.session;
+export const getSession = (state: State) => {
+  console.log(state.session);
+ return state.session
+};
