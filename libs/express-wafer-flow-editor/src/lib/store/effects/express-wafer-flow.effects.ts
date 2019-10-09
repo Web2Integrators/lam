@@ -43,8 +43,12 @@ export class ExpressWaferFlowEffects {
 
   postAction(action: any,session): Observable<any> {
     console.log(action);
+   const sessionObj = {
+    sessionID: session.sessionID,
+    lockNames: ['WaferflowEditor'],
+    }
     return this.http
-      .post<Response>(`${nextBackendUrl}/waferflow/v1/initialize`, action)
+      .post<Response>(`${nextBackendUrl}/waferflow/v1/initialize`, sessionObj)
       .pipe(
         tap((res: Response) =>
           console.log(`Received response to  action:`, res)
