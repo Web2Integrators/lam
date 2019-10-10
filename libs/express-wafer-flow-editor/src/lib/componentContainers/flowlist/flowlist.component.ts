@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State, getExpress } from '../../store/reducers/';
-import { loadExpressWaferFlows } from '../../store/actions/express-wafer-flow.actions';
+
 import { Observable } from 'rxjs';
+import { loadFlowList } from '../../store/flowlist/flow-list.actions';
+import { State } from '../../store';
+import { FlowListFacade } from '../../store/flowlist/flow-list.facade';
 
 @Component({
   selector: 'ewfe-flowlist',
@@ -11,12 +13,12 @@ import { Observable } from 'rxjs';
 })
 export class FlowlistComponent implements OnInit {
 
-  flowList$: Observable<any>;
-  constructor(private store: Store<State>) { }
+  flowList$: Observable<any> = this.facade.flowlist$;
+  constructor(private facade: FlowListFacade) { }
 
   ngOnInit() {
-    this.store.dispatch(loadExpressWaferFlows());
-    this.flowList$ = this.store.pipe(select(getExpress));
+   // this.store.dispatch(loadFlowList());
+    //this.flowList$ = this.store.pipe(select(getExpress));
   }
 
 }

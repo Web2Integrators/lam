@@ -1,28 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { LayoutSidenavComponent } from './layoutContainers/layout-sidenav/layout-sidenav.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromExpressWaferFlow from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { ExpressWaferFlowEffects } from './store/effects/express-wafer-flow.effects';
-import { FlowlistComponent } from './componentContainers/flowlist/flowlist.component';
 
+import { LayoutSidenavComponent } from './layoutContainers/layout-sidenav/layout-sidenav.component';
+import { FlowlistComponent } from './componentContainers/flowlist/flowlist.component';
 import { FlowlistviewComponent } from './components/flowlistview/flowlistview.component';
 
+import { FlowListEffects } from './store/flowlist/flow-list.effects';
+import { FlowListFacade } from './store/flowlist/flow-list.facade';
+import { ExpresswfShellEffects } from './store/expresswf-shell/expresswf-shell.effects';
+import { ExpresswfShellFacade } from './store/expresswf-shell/expresswf-shell.facade';
+import { expressWafwerFlowFeaturekey, reducers } from './store';
 @NgModule({
   imports: [
     CommonModule,
-
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: LayoutSidenavComponent }
     ]),
-
-    StoreModule.forFeature(fromExpressWaferFlow.expressWafwerFlowFeaturekey,fromExpressWaferFlow.reducers),
-    EffectsModule.forFeature([ExpressWaferFlowEffects]),
-
+    StoreModule.forFeature(expressWafwerFlowFeaturekey,reducers),
+    EffectsModule.forFeature([FlowListEffects,ExpresswfShellEffects]),
   ],
-  declarations: [LayoutSidenavComponent, FlowlistComponent, FlowlistviewComponent],
-  providers:[ExpressWaferFlowEffects]
+  declarations: [
+    LayoutSidenavComponent,
+    FlowlistComponent,
+    FlowlistviewComponent
+  ],
+  providers: [
+    ExpresswfShellEffects,
+    FlowListEffects,
+    FlowListFacade,
+    ExpresswfShellFacade
+  ]
 })
 export class ExpressWaferFlowEditorModule {}
