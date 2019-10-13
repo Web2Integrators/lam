@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-
 import { Observable } from 'rxjs';
 import { loadFlowList } from '../../store/flowlist/flow-list.actions';
-import { State } from '../../store';
 import { FlowListFacade } from '../../store/flowlist/flow-list.facade';
 
 @Component({
@@ -17,8 +14,7 @@ export class FlowlistComponent implements OnInit {
   constructor(private facade: FlowListFacade) { }
 
   ngOnInit() {
-   // this.store.dispatch(loadFlowList());
-    //this.flowList$ = this.store.pipe(select(getExpress));
+    this.facade.dispatch(loadFlowList())
   }
 
 }
