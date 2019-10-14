@@ -25,7 +25,10 @@
       "@lamresearch/express-wafer-flow-editor": [
         "libs/express-wafer-flow-editor/src/index.ts"
       ],
-      "@lamresearch/utility": ["libs/utility/src/index.ts"]
+      "@lamresearch/utility": ["libs/utility/src/index.ts"],
+      "@lamresearch/books": ["libs/books/src/index.ts"],
+      "@lamresearch/core": ["libs/core/src/index.ts"],
+      "@lamresearch/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

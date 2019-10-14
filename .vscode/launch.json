@@ -38,7 +38,8 @@
         "test",
         "${input:libName}",
         "--runInBand=true",
-        "--codeCoverage=false"
+        "--codeCoverage=false",
+        "--updateSnapshot"
       ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",

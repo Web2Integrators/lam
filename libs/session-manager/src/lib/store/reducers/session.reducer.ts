@@ -9,7 +9,9 @@ export interface State {
 }
 
 export const initialState: State = {
-  session: null,
+  session: {
+    sessionID :'1'
+  },
 };
 
 export const reducer = createReducer(

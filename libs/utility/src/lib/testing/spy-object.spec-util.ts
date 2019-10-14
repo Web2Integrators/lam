@@ -47,7 +47,7 @@ export class SpyObject {
 
   spy(name: string) {
     if (!(this as any)[name]) {
-      (this as any)[name] = jasmine.createSpy(name);
+       (this as any)[name] = jasmine.createSpy(name);
     }
     return (this as any)[name];
   }

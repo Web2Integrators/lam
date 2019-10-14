@@ -237,8 +237,12 @@ export class ConnectionService implements OnDestroy {
         }),
         takeUntil(this.unsubscribe)
       )
-      .subscribe(conn => {
-        this.processSession(conn ? conn : undefined, address);
+      .subscribe(session => {
+        this.processSession(session ? session : undefined, address);
+        if(session)
+        {
+          this.store.dispatch(SessionActions.sessionCreate({ session }));
+        }
       });
   }
 
@@ -250,7 +254,7 @@ export class ConnectionService implements OnDestroy {
    */
   processSession(session: Session | undefined, address: string) {
     if (session) {
-      this.store.dispatch(SessionActions.sessionCreate({ session }));
+
       this.session = { ...session, address };
       this.getResourceList();
       this.sendHeartbeat(session.sessionID);

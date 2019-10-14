@@ -1,7 +1,7 @@
-import CustomMatcherResult = jasmine.CustomMatcherResult;
-import CustomMatcher = jasmine.CustomMatcher;
-import CustomEqualityTester = jasmine.CustomEqualityTester;
-import MatchersUtil = jasmine.MatchersUtil;
+// import CustomMatcherResult = jasmine.CustomMatcherResult;
+// import CustomMatcher = jasmine.CustomMatcher;
+// import CustomEqualityTester = jasmine.CustomEqualityTester;
+// import MatchersUtil = jasmine.MatchersUtil;
 import { SpyObject } from './spy-object.spec-util';
 // tslint:disable-next-line:nx-enforce-module-boundaries
 import { LogService, Logger } from '@lamresearch/lam-common-eager';
@@ -13,7 +13,7 @@ import { LogService, Logger } from '@lamresearch/lam-common-eager';
 
 export const logSvc: any = SpyObject.create(LogService);
 export const logSpy: any = SpyObject.create(Logger);
-logSvc.createLogger.and.returnValue(logSpy);
+//logSvc.createLogger.and.returnValue(logSpy);
 
 // import { isFunction } from 'lodash';
 

@@ -87,10 +87,7 @@
               "apps/expresswaferflow/tsconfig.app.json",
               "apps/expresswaferflow/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/expresswaferflow/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/expresswaferflow/**"]
           }
         },
         "test": {
@@ -124,13 +121,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/expresswaferflow-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/expresswaferflow-e2e/**"
-            ]
+            "tsConfig": ["apps/expresswaferflow-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/expresswaferflow-e2e/**"]
           }
         }
       }
@@ -155,10 +147,7 @@
               "libs/landing/tsconfig.lib.json",
               "libs/landing/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/landing/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/landing/**"]
           }
         },
         "test": {
@@ -192,10 +181,7 @@
               "libs/session-manager/tsconfig.lib.json",
               "libs/session-manager/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/session-manager/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/session-manager/**"]
           }
         },
         "test": {
@@ -233,10 +219,7 @@
               "libs/lam-common-lazy/tsconfig.lib.json",
               "libs/lam-common-lazy/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/lam-common-lazy/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/lam-common-lazy/**"]
           }
         },
         "test": {
@@ -274,10 +257,7 @@
               "libs/lam-common-eager/tsconfig.lib.json",
               "libs/lam-common-eager/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/lam-common-eager/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/lam-common-eager/**"]
           }
         },
         "test": {
@@ -356,10 +336,7 @@
               "libs/utility/tsconfig.lib.json",
               "libs/utility/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/utility/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/utility/**"]
           }
         },
         "test": {
@@ -368,6 +345,113 @@
             "jestConfig": "libs/utility/jest.config.js",
             "tsConfig": "libs/utility/tsconfig.spec.json",
             "setupFile": "libs/utility/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "books": {
+      "projectType": "library",
+      "root": "libs/books",
+      "sourceRoot": "libs/books/src",
+      "prefix": "lamresearch",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/books/tsconfig.lib.json",
+              "libs/books/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/books/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/books/jest.config.js",
+            "tsConfig": "libs/books/tsconfig.spec.json",
+            "setupFile": "libs/books/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "core": {
+      "projectType": "library",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "prefix": "lamresearch",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "setupFile": "libs/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
+      "prefix": "lamresearch",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/auth/tsconfig.lib.json",
+            "project": "libs/auth/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/auth/tsconfig.lib.json",
+              "libs/auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/auth/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/auth/jest.config.js",
+            "tsConfig": "libs/auth/tsconfig.spec.json",
+            "setupFile": "libs/auth/src/test-setup.ts"
           }
         }
       },

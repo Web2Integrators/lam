@@ -17,10 +17,12 @@ import { MatDialogModule } from '@angular/material';
 import { ModalModule } from '@lamresearch/lam-common-lazy';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers } from '../../sharedArtifcats/app-state';
+
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { ROOT_REDUCERS } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
+
+
 const MAX_STORE_STATES = 25;
 const eagerModules = [
   CommonModule,
@@ -48,7 +50,7 @@ const eagerModules = [
     }),
     StoreDevtoolsModule.instrument({ maxAge: MAX_STORE_STATES }),
     EffectsModule.forRoot([]),
-  ],
+ ],
   exports : [... eagerModules,RootComponent]
 })
 export class LamCommonEagerModule {
