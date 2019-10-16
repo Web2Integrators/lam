@@ -13,14 +13,22 @@ import { FlowListFacade } from './store/flowlist/flow-list.facade';
 import { ExpresswfShellEffects } from './store/expresswf-shell/expresswf-shell.effects';
 import { ExpresswfShellFacade } from './store/expresswf-shell/expresswf-shell.facade';
 import { expressWafwerFlowFeaturekey, reducers } from './store';
+import * as fromWaferflowList from './store/waferflow-list/waferflow-list.reducer';
+import { WaferflowListEffects } from './store/waferflow-list/waferflow-list.effects';
+import { WaferflowListFacade } from './store/waferflow-list/waferflow-list.facade';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: LayoutSidenavComponent }
     ]),
-    StoreModule.forFeature(expressWafwerFlowFeaturekey,reducers),
-    EffectsModule.forFeature([FlowListEffects,ExpresswfShellEffects]),
+    StoreModule.forFeature(expressWafwerFlowFeaturekey, reducers),
+    EffectsModule.forFeature([FlowListEffects, ExpresswfShellEffects]),
+    StoreModule.forFeature(
+      fromWaferflowList.WAFERFLOWLIST_FEATURE_KEY,
+      fromWaferflowList.reducer
+    ),
+    EffectsModule.forFeature([WaferflowListEffects])
   ],
   declarations: [
     LayoutSidenavComponent,
@@ -31,7 +39,8 @@ import { expressWafwerFlowFeaturekey, reducers } from './store';
     ExpresswfShellEffects,
     FlowListEffects,
     FlowListFacade,
-    ExpresswfShellFacade
+    ExpresswfShellFacade,
+    WaferflowListFacade
   ]
 })
 export class ExpressWaferFlowEditorModule {}

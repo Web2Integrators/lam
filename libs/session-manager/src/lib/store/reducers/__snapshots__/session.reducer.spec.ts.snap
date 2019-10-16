@@ -2,14 +2,14 @@
 
 exports[`SessionsReducer Selectors selectId should return session 1`] = `
 Object {
-  "sessionID": "1",
+  "sessionID": "2",
 }
 `;
 
 exports[`SessionsReducer undefined action should return the default state 1`] = `
 Object {
   "session": Object {
-    "sessionID": "1",
+    "sessionID": "2",
   },
 }
 `;

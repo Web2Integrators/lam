@@ -6,16 +6,18 @@ import { FlowListEntity } from './flow-list.models';
 
 export const FLOWLIST_FEATURE_KEY = 'flowList';
 
+
+
+
 export interface FlowListState extends EntityState<FlowListEntity> {
   selectedId?: string | number; // which FlowList record has been selected
   loaded?: boolean; // has the FlowList list been loaded
   error?: string | null; // last none error (if any)
-  flowlist?:any
+  flowlist?: string[]
+
 }
 
-export interface FlowListPartialState {
-  readonly [FLOWLIST_FEATURE_KEY]: FlowListState;
-}
+
 
 export const flowListAdapter: EntityAdapter<
   FlowListEntity

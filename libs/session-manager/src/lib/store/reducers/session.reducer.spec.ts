@@ -5,7 +5,7 @@ import { Session } from '../../types/types';
 
 describe('SessionsReducer', () => {
   const session: Session = {
-    sessionID :'1'
+    sessionID :'2'
   };
 
   const initialState: fromSession.State = {

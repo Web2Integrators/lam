@@ -43,7 +43,7 @@ export class FlowListEffects {
       tap(r =>console.log(r)),
       map((express: any) => {
         console.log(express);
-        const flowlist = express.simpleFlowsList;
+        const flowlist :string[] = express.simpleFlowsList;
          return FlowListActions.loadFlowListSuccess({ flowlist });
       }),
     ),
@@ -65,25 +65,6 @@ export class FlowListEffects {
   }
 
 
-  // loadFlowList$ = createEffect(() =>
-  //   this.dataPersistence.fetch(FlowListActions.loadFlowList, {
-  //     run: (
-  //       action: ReturnType<typeof FlowListActions.loadFlowList>,
-  //       state: FlowListPartialState
-  //     ) => {
-  //       // Your custom service 'load' logic goes here. For now just return a success action...
-  //       return FlowListActions.loadFlowListSuccess({ flowList: [] });
-  //     },
-
-  //     onError: (
-  //       action: ReturnType<typeof FlowListActions.loadFlowList>,
-  //       error
-  //     ) => {
-  //       console.error('Error', error);
-  //       return FlowListActions.loadFlowListFailure({ error });
-  //     }
-  //   })
-  // );
 
   constructor(
     private http: HttpClient,

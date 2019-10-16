@@ -5,7 +5,7 @@ export const loadFlowList = createAction('[FlowList] Load FlowList');
 
 export const loadFlowListSuccess = createAction(
   '[FlowList] Load FlowList Success',
-  props<{ flowlist: any }>()
+  props<{ flowlist: string[] }>()
 );
 
 export const loadFlowListFailure = createAction(

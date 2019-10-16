@@ -8,12 +8,13 @@ import {
 // tslint:disable-next-line:nx-enforce-module-boundaries
 import {AppState} from '@lamresearch/lam-common-eager'
 import * as  fromSession from './session.reducer'
-
+import * as fromArbitration from './arbitration.reducer'
 
 export const sessionFeatureKey = 'session';
 
 export interface SessionState {
   [fromSession.sessionBasicKey]: fromSession.State;
+  [fromArbitration.arbitrationFeatureKey]: fromArbitration.State;
 }
 
 export interface State extends AppState {
@@ -23,7 +24,7 @@ export interface State extends AppState {
 export function reducers(state: SessionState | undefined, action: Action) {
   return combineReducers({
     [fromSession.sessionBasicKey]: fromSession.reducer,
-
+    [fromArbitration.arbitrationFeatureKey]:fromArbitration.reducer
   })(state, action);
 }
 

@@ -10,16 +10,14 @@ export interface State {
 
 export const initialState: State = {
   session: {
-    sessionID :'1'
+    sessionID :'2'
   },
 };
 
 export const reducer = createReducer(
   initialState,
   on(SessionActions.sessionCreate, (state, { session }) => (
-
     {
-
     ...state, session
   })),
 );

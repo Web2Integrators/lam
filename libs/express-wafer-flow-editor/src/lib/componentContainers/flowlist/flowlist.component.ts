@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { loadFlowList } from '../../store/flowlist/flow-list.actions';
-import { FlowListFacade } from '../../store/flowlist/flow-list.facade';
+import { WaferflowListFacade } from '../../store/waferflow-list/waferflow-list.facade';
+import { loadWaferflowList } from '../../store/waferflow-list/waferflow-list.actions';
+import { WaferflowListEntity } from '../../store/waferflow-list/waferflow-list.models';
 
 @Component({
   selector: 'ewfe-flowlist',
@@ -10,11 +11,11 @@ import { FlowListFacade } from '../../store/flowlist/flow-list.facade';
 })
 export class FlowlistComponent implements OnInit {
 
-  flowList$: Observable<any> = this.facade.flowlist$;
-  constructor(private facade: FlowListFacade) { }
+  waferflowList$: Observable<WaferflowListEntity> = this.facade.waferflowlist$;
+  constructor(private facade: WaferflowListFacade) { }
 
   ngOnInit() {
-    this.facade.dispatch(loadFlowList())
+    this.facade.dispatch(loadWaferflowList())
   }
 
 }

@@ -1,11 +1,16 @@
 import {  createSelector } from '@ngrx/store';
-import {  getFlowListState } from '../index';
+import {  selectExpresseWaferFlowState, ExpresseWaferFlowType } from '../index';
 import {
   FLOWLIST_FEATURE_KEY,
   FlowListState,
 
   flowListAdapter
 } from './flow-list.reducer';
+
+export const getFlowListState = createSelector(
+  selectExpresseWaferFlowState,
+  (state: ExpresseWaferFlowType) => state.flowList
+);
 
 // Lookup the 'FlowList' feature state managed by NgRx
 // export const getFlowListState = createFeatureSelector<
