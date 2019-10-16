@@ -4,18 +4,15 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { LayoutSidenavComponent } from './layoutContainers/layout-sidenav/layout-sidenav.component';
-import { FlowlistComponent } from './componentContainers/flowlist/flowlist.component';
-import { FlowlistviewComponent } from './components/flowlistview/flowlistview.component';
-
-import { FlowListEffects } from './store/flowlist/flow-list.effects';
-import { FlowListFacade } from './store/flowlist/flow-list.facade';
 import { ExpresswfShellEffects } from './store/expresswf-shell/expresswf-shell.effects';
 import { ExpresswfShellFacade } from './store/expresswf-shell/expresswf-shell.facade';
 import { expressWafwerFlowFeaturekey, reducers } from './store';
-import * as fromWaferflowList from './store/waferflow-list/waferflow-list.reducer';
 import { WaferflowListEffects } from './store/waferflow-list/waferflow-list.effects';
 import { WaferflowListFacade } from './store/waferflow-list/waferflow-list.facade';
+import { LayoutSidenavComponent } from './containers/layoutContainers/layout-sidenav/layout-sidenav.component';
+import { WaferflowlistComponent } from './containers/componentContainers/waferflowlist/waferflowlist.component';
+import { WaferflowattributesComponent } from './containers/componentContainers/waferflowattributes/waferflowattributes.component';
+import { WaferflowlistViewComponent } from './pure-components/waferflowlist-view/waferflowlist-view.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,22 +20,16 @@ import { WaferflowListFacade } from './store/waferflow-list/waferflow-list.facad
       { path: '', pathMatch: 'full', component: LayoutSidenavComponent }
     ]),
     StoreModule.forFeature(expressWafwerFlowFeaturekey, reducers),
-    EffectsModule.forFeature([FlowListEffects, ExpresswfShellEffects]),
-    StoreModule.forFeature(
-      fromWaferflowList.WAFERFLOWLIST_FEATURE_KEY,
-      fromWaferflowList.reducer
-    ),
-    EffectsModule.forFeature([WaferflowListEffects])
+    EffectsModule.forFeature([WaferflowListEffects,ExpresswfShellEffects])
   ],
   declarations: [
     LayoutSidenavComponent,
-    FlowlistComponent,
-    FlowlistviewComponent
+    WaferflowlistComponent,
+    WaferflowattributesComponent,
+    WaferflowlistViewComponent
   ],
   providers: [
     ExpresswfShellEffects,
-    FlowListEffects,
-    FlowListFacade,
     ExpresswfShellFacade,
     WaferflowListFacade
   ]
