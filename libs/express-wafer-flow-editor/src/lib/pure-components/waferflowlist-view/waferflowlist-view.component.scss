@@ -1,0 +1,17 @@
+:host {
+  display: grid;
+  grid-gap: 0;
+
+
+  grid-template-columns:  1fr;
+  grid-template-rows:  auto 1fr;
+
+  height: 100vh;
+ 
+  padding: 0;
+}
+
+
+main{
+  overflow: auto;
+}

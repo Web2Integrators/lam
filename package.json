@@ -39,12 +39,14 @@
     "@angular/common": "^8.2.0",
     "@angular/compiler": "^8.2.0",
     "@angular/core": "^8.2.0",
+    "@angular/flex-layout": "^8.0.0-beta.27",
     "@angular/forms": "^8.2.0",
     "@angular/material": "^8.2.0",
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
     "@ngrx/effects": "^8.3.0",
+    "@ngrx/entity": "8.3.0",
     "@ngrx/router-store": "^8.3.0",
     "@ngrx/store": "^8.3.0",
     "@nrwl/angular": "^8.5.0",
@@ -56,8 +58,7 @@
     "tslib": "^1.10.0",
     "typeface-titillium-web": "0.0.72",
     "xregexp": "^4.2.4",
-    "zone.js": "^0.10.2",
-    "@ngrx/entity": "8.3.0"
+    "zone.js": "^0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.3",

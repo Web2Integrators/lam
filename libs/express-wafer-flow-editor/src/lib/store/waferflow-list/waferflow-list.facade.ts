@@ -10,13 +10,18 @@ export class WaferflowListFacade implements Facade {
   loaded$ = this.store.pipe(
     select(WaferflowListSelectors.getWaferflowListLoaded)
   );
-  waferflowlist$: Observable<WaferflowListEntity> = this.store.pipe(
+  getWaferflowListEntity$: Observable<WaferflowListEntity> = this.store.pipe(
     select(WaferflowListSelectors.getWaferflowListEntity)
   );
+  collectionNames$: Observable<string[]> = this.store.pipe(
+    select(WaferflowListSelectors.getCollectionNames)
+  );
+
+  waferFlowList$: Observable<any> = this.store.pipe(
+    select(WaferflowListSelectors.getWaferFlowList)
+  );
   constructor(private store: Store<ExpresseWaferFlowState>) {
-    this.waferflowlist$.subscribe(data => {
-      console.log(data);
-    });
+
   }
 
   dispatch(action: Action) {

@@ -1,1 +1,20 @@
-<p>waferflowlist-view works!</p>
+<header>
+  <mat-form-field fxFlexOffset="15px" fxFlex='90%' >
+    <mat-label>Recipe Collection</mat-label>
+    <mat-select (selectionChange)="onSelectionChange($event)"  [formControl]="collectionControl" >
+      <mat-option *ngFor="let collection of collectionNames" [value]="collection">
+        {{ collection }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</header>
+<main>
+  <mat-card fxFlex>
+    <mat-list >
+      <h3 mat-subheader>Wafer Flows</h3>
+      <mat-list-item *ngFor="let flow of waferFlows">
+        <h4 mat-line>{{ flow }}</h4>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</main>

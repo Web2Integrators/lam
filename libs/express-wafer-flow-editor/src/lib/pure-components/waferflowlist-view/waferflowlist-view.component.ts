@@ -1,4 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ewfe-waferflowlist-view',
@@ -7,10 +15,20 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WaferflowlistViewComponent implements OnInit {
+  @Input() public collectionNames: string[];
+  @Input() public waferFlows: string[];
+  @Output() onCollectionNameChanged = new EventEmitter<any>();
 
-  constructor() { }
+  collectionControl = new FormControl('');
 
-  ngOnInit() {
+  constructor() {
+    console.log(this.collectionNames);
   }
 
+  onSelectionChange(event)
+  {
+    this.onCollectionNameChanged.emit(event.value)
+  }
+
+  ngOnInit() {}
 }

@@ -8,12 +8,14 @@ export interface WaferflowListState {
   WaferflowListEntity: WaferflowListEntity;
   loaded: boolean; // has the WaferflowList list been loaded
   error?: string | null; // last none error (if any)
+  selectedCollection?:string
 }
 
 export const initialState: WaferflowListState = {
   // set initial required properties
   WaferflowListEntity: null,
-  loaded: false
+  loaded: false,
+  selectedCollection:"All"
 };
 
 const waferflowListReducer = createReducer(
@@ -21,7 +23,8 @@ const waferflowListReducer = createReducer(
   on(WaferflowListActions.loadWaferflowList, state => ({
     ...state,
     loaded: false,
-    error: null
+    error: null,
+
   })),
   on(
     WaferflowListActions.loadWaferflowListSuccess,
@@ -30,6 +33,10 @@ const waferflowListReducer = createReducer(
   on(WaferflowListActions.loadWaferflowListFailure, (state, { error }) => ({
     ...state,
     error
+  })),
+  on(WaferflowListActions.selectCollection, (state, { collectionName }) => ({
+    ...state,
+    selectedCollection: collectionName,
   }))
 );
 

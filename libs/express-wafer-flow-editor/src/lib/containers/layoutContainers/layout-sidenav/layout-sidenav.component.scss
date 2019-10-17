@@ -3,9 +3,9 @@
 
   grid-gap: 0;
 
-  grid-template-rows: auto  1fr  auto;
-  grid-template-columns:  225px 1fr 1fr;
-  grid-template-areas: " header header header" " main main main" " footer footer footer ";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 225px 1fr 1fr;
+  grid-template-areas: " header header header"" main main main"" footer footer footer ";
 
   height: 100vh;
 
@@ -21,29 +21,40 @@ header {
   padding: 15px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.33);
   z-index: 1;
-
-
 }
 
 
 main {
   grid-area: main;
   display: grid;
-  justify-content: space-between;
+
   overflow: auto;
   padding: 15px;
   padding-left: 50px;
 
-  background-color : beige
+  background-color: beige;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 3px;
 
 }
 
 
 footer {
   grid-area: footer;
-  background-color : burlywood;
+  background-color: burlywood;
   display: grid;
   justify-content: space-between;
 
 
+}
+
+.item {
+  /* We center the contents of these items. You can also do this with flexbox too! */
+
+
+  border: 5px solid rgb(198,164,154);
+  border-radius: 3px;
+
+  background-color: whitesmoke;
+  /* best colour */
 }

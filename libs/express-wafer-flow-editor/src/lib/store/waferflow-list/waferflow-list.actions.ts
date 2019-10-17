@@ -10,6 +10,11 @@ export const loadWaferflowListSuccess = createAction(
   props<{ waferflowList: WaferflowListEntity }>()
 );
 
+export const selectCollection = createAction(
+  '[WaferflowList] Select Collection',
+  props<{ collectionName: string }>()
+);
+
 export const loadWaferflowListFailure = createAction(
   '[WaferflowList] Load WaferflowList Failure',
   props<{ error: any }>()

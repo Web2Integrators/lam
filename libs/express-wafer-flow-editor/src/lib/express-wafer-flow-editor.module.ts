@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ExpresswfShellEffects } from './store/expresswf-shell/expresswf-shell.effects';
 import { ExpresswfShellFacade } from './store/expresswf-shell/expresswf-shell.facade';
@@ -13,9 +14,15 @@ import { LayoutSidenavComponent } from './containers/layoutContainers/layout-sid
 import { WaferflowlistComponent } from './containers/componentContainers/waferflowlist/waferflowlist.component';
 import { WaferflowattributesComponent } from './containers/componentContainers/waferflowattributes/waferflowattributes.component';
 import { WaferflowlistViewComponent } from './pure-components/waferflowlist-view/waferflowlist-view.component';
+import { NodeattributesComponent } from './containers/componentContainers/nodeattributes/nodeattributes.component';
+import { MaterialModule } from './shared';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: LayoutSidenavComponent }
     ]),
@@ -26,7 +33,8 @@ import { WaferflowlistViewComponent } from './pure-components/waferflowlist-view
     LayoutSidenavComponent,
     WaferflowlistComponent,
     WaferflowattributesComponent,
-    WaferflowlistViewComponent
+    WaferflowlistViewComponent,
+    NodeattributesComponent
   ],
   providers: [
     ExpresswfShellEffects,
